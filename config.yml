@@ -1,0 +1,4 @@
+development:
+  password: "$clave"
+  theme_id: "$theme"
+  store: "$tienda"
