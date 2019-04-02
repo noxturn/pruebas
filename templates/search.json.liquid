@@ -1,0 +1,47 @@
+{% layout none %}
+
+{% capture results %}
+  {% for item in search.results limit: 3 %}
+	{% if item.object_type == 'product' %}
+    	{% assign product = item %}
+		
+        {
+          "title"    : {{ product.title | json }},
+          "url"      : {{ product.url | within: product.collections.last | json }},
+          "thumbnail": {{ product.featured_image.src | product_img_url: 'medium' | json }},
+          "price"    : {{ product.price | money | json }},
+          "price_compare" : {{ product.compare_at_price | money | json }},
+          "contenido" : {{ product.description | strip_html | json }}
+        }
+	{% elsif item.object_type == 'page' %}
+	{% assign pagina = item %}
+		{
+			"title" : {{ pagina.title | json }}
+		}
+	{% endif  %}
+	
+  {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+{% endcapture %}
+{
+  "results_count": {{ search.results_count }},
+  "results": [{{ results }}]
+}
+
+{% comment %}
+  {% assign cantp = 0 %}
+  {% assign cantc = 0 %}
+{% elsif  item.object_type == 'page' %}
+	    {% assign cantc = cantc | plus: 1 %}
+		{% assign page = item %}
+		{% assign cantp = cantp | plus: 1 %}
+		{
+		  "titulo" : {{ page.title | json }}
+		}
+             
+             
+              limit: 6 
+             
+             
+              
+{% endcomment %}

@@ -1,0 +1,181 @@
+<div class="step" data-step="contact_information">
+  	<div class="step__sections">
+      	{% comment %}
+      	<div id="cart-products" style="margin-bottom: 100px; border: 1px solid green; padding: 10px;">
+          	<h2 class="section__title" style="margin-bottom: 20px;">CART</h2>
+      	</div>
+      	{% endcomment %}
+		<div class="section section--contact-information">
+				<div class="section__header">
+				<div class="layout-flex layout-flex--tight-vertical layout-flex--loose-horizontal layout-flex--wrap">
+						<h2 class="section__title layout-flex__item layout-flex__item--stretch" id="main-header" tabindex="-1">
+						Contact information
+                  	</h2>
+                  	<p class="layout-flex__item">
+                      	<span aria-hidden="true">Already have an account?</span>
+                      	<a href="/">
+                          	<!-- Link to user account ¿? -->
+                          	Log in
+                      	</a>
+                  	</p>
+              	</div>
+          	</div>
+          	<div class="section__content" data-section="customer-information">
+              	<div class="fieldset">
+                  	<div class="field field--required">
+                      	<div class="field__input-wrapper">
+                          	<label class="field__label" for="checkout_email">Email</label>
+                          	<input id="customer-email" placeholder="Email" autocapitalize="off" spellcheck="false" autocomplete="shipping email" data-autofocus="true" aria-describedby="checkout-context-step-one" aria-required="true" class="field__input" size="30" type="email" name="checkout[email]" id="checkout_email" />
+                      	</div>
+                  	</div>
+              	</div>
+              	<div class="fieldset-description" data-buyer-accepts-marketing>
+                  	<div class="section__content">
+                      	<div class="checkbox-wrapper">
+                          	<div class="checkbox__input">
+                              	<input name="checkout[buyer_accepts_marketing]" type="hidden" value="0" />
+                              	<input class="input-checkbox" data-backup="buyer_accepts_marketing" type="checkbox" value="1" checked="checked" name="checkout[buyer_accepts_marketing]" id="checkout_buyer_accepts_marketing" />
+                          	</div>
+                          	<label class="checkbox__label" for="checkout_buyer_accepts_marketing">
+                              	Keep me up to date on news and exclusive offers
+                          	</label>
+                      	</div>
+                  	</div>
+              	</div>
+          	</div>
+      	</div>
+      	<form id="shipping-address-form" class="section section--shipping-address" data-shipping-address data-update-order-summary>
+          	<div class="section__header">
+              	<h2 class="section__title">
+                  	Shipping address
+              	</h2>
+          	</div>
+          	<div class="section__content">
+              	<div class="fieldset" data-address-fields>
+                  	<div class="field--half field field--required" data-address-field="first_name">
+                      	<div class="field__input-wrapper">
+                          	<label class="field__label" for="checkout_shipping_address_first_name">First name</label>
+                          	<input placeholder="First name" autocomplete="shipping given-name" data-backup="first_name" class="field__input" aria-required="true" size="30" type="text" name="first_name" id="checkout_shipping_address_first_name" />
+                      	</div>
+                  	</div>
+
+                  	<div class="field--half field field--required" data-address-field="last_name">
+                      	<div class="field__input-wrapper">
+                          	<label class="field__label" for="checkout_shipping_address_last_name">Last name</label>
+                          	<input placeholder="Last name" autocomplete="shipping family-name" data-backup="last_name" class="field__input" aria-required="true" size="30" type="text" name="last_name" id="checkout_shipping_address_last_name" />
+                      	</div>
+                  	</div>
+
+                    <div data-address-field="company" data-autocomplete-field-container="true" class="field field--optional">
+                      	<div class="field__input-wrapper">
+                          	<label class="field__label" for="checkout_shipping_address_company">Company (optional)</label>
+                        	<input placeholder="Company (optional)" autocomplete="shipping organization" data-backup="company" class="field__input" size="30" type="text" name="company" id="checkout_shipping_address_company" />
+                      	</div>
+                    </div>
+
+                    <div data-address-field="address1" data-autocomplete-field-container="true" class="field field--required">
+                      	<div class="field__input-wrapper">
+                          	<label class="field__label" for="checkout_shipping_address_address1">Address</label>
+                        	<input placeholder="Address" autocomplete="shipping address-line1" autocorrect="off" role="combobox" aria-autocomplete="list" aria-owns="address-autocomplete" aria-expanded="false" aria-required="true" data-backup="address1" data-trekkie-id="shipping_address1_google_autocomplete_field" data-autocomplete-trigger="true" data-autocomplete-title="Suggestions" data-autocomplete-single-item="1 item available" data-autocomplete-multi-item="{{number}} items available" data-autocomplete-item-selection="{{number}} of {{total}}" data-autocomplete-close="Close suggestions" class="field__input" size="30" type="text" name="address1" id="checkout_shipping_address_address1" />
+                      	</div>
+                    </div>
+
+                    <div data-address-field="address2" data-autocomplete-field-container="true" class="field field--optional">
+                      	<div class="field__input-wrapper">
+                          	<label class="field__label" for="checkout_shipping_address_address2">Apartment, suite, etc. (optional)</label>
+                          	<input placeholder="Apartment, suite, etc. (optional)" autocomplete="shipping address-line2" autocorrect="off" data-backup="address2" class="field__input" size="30" type="text" name="address2" id="checkout_shipping_address_address2" />
+                      	</div>
+                    </div>
+
+                  	<div data-address-field="city" data-autocomplete-field-container="true" class="field field--required">
+                      	<div class="field__input-wrapper">
+                          	<label class="field__label" for="checkout_shipping_address_city">City</label>
+                          	<input placeholder="City" autocomplete="shipping address-level2" autocorrect="off" data-backup="city" class="field__input" aria-required="true" size="30" type="text" name="city" id="checkout_shipping_address_city" />
+                      	</div>
+                  	</div>
+
+                  	<div class="field--third field field--required" data-address-field="country" data-autocomplete-field-container="true">
+                      	<div class="field__input-wrapper field__input-wrapper--select">
+                          	<label class="field__label" for="checkout_shipping_address_country">Country</label>
+                          	{% include 'checkout-select-country' %}
+                          	<div class="field__caret">
+                              	<svg class="icon-svg icon-svg--color-adaptive-lighter icon-svg--size-10 field__caret-svg" aria-hidden="true" focusable="false"> <use xlink:href="#caret-down" />
+                                  	<svg id="caret-down" width="100%" height="100%"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M0 3h10L5 8" fill-rule="nonzero"></path></svg></svg>
+                              	</svg>
+                            </div>
+                      	</div>
+                  	</div>
+                    <div class="field--third field field--required" data-address-field="province" data-autocomplete-field-container="true">
+                        <div class="field__input-wrapper field__input-wrapper--select">
+                          	<label class="field__label" for="checkout_shipping_address_province">Province</label>
+                            <input placeholder="Province" autocomplete="shipping address-level1" data-backup="province" class="field__input field__input--select" aria-required="true" type="text" name="province" id="checkout_shipping_address_province" />
+                            <div class="field__caret shown-if-js">
+                              	<svg class="icon-svg icon-svg--color-adaptive-lighter icon-svg--size-10 field__caret-svg" aria-hidden="true" focusable="false"> <use xlink:href="#caret-down" />
+                                  	<svg id="caret-down" width="100%" height="100%"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M0 3h10L5 8" fill-rule="nonzero"></path></svg></svg>
+                              	</svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field--third field field--required" data-address-field="zip" data-autocomplete-field-container="true">
+                        <div class="field__input-wrapper">
+                          	<label class="field__label" for="checkout_shipping_address_zip">Postal code</label>
+                          	<input placeholder="Postal code" autocomplete="shipping postal-code" data-backup="zip" data-autocomplete-trigger="true" data-autocomplete-title="Suggestions" data-autocomplete-single-item="1 item available" data-autocomplete-multi-item="{{number}} items available" data-autocomplete-item-selection="{{number}} of {{total}}" data-autocomplete-close="Close suggestions" class="field__input field__input--zip" aria-required="true" size="30" type="text" name="zip" id="checkout_shipping_address_zip" />
+                        </div>
+                    </div>
+                    <div data-address-field="phone" class="field field--required">
+                        <div class="field__input-wrapper">
+                          	<label class="field__label" for="checkout_shipping_address_phone">Phone</label>
+                          	<input placeholder="Phone" autocomplete="shipping tel" data-backup="phone" data-phone-formatter="true" data-phone-formatter-country-select="[name=&#39;checkout[shipping_address][country]&#39;]" class="field__input field__input--numeric" aria-required="true" size="30" type="tel" name="phone" id="checkout_shipping_address_phone" />
+                        </div>
+                    </div>
+              	</div>
+          	</div>
+      	</form>
+
+        <div class="section section--half-spacing-top section--optional">
+            <div class="section__content">
+              	<div class="checkbox-wrapper">
+                    <div class="checkbox__input">
+                        <input size="30" type="hidden" name="checkout[remember_me]" />
+                        <input name="checkout[remember_me]" type="hidden" value="0" /><input class="input-checkbox" data-backup="remember_me" type="checkbox" value="1" name="checkout[remember_me]" id="checkout_remember_me" />
+                    </div>
+                  	<label class="checkbox__label" for="checkout_remember_me">
+                      	Save this information for next time
+                  	</label>
+              	</div>
+            </div>
+        </div>
+
+
+      	{% comment %}
+      	<form class="credit-card-payment" data-action="/charge" data-method="post" id="payment-form">
+            <div class="form-row">
+                <label for="card-element">
+                    Credit or debit card
+                </label>
+                <div id="card-element">
+                    <!-- A Stripe Element will be inserted here. -->
+                </div>
+                <!-- Used to display Element errors. -->
+                <div id="card-errors" role="alert"></div>
+            </div>
+            <button hidden>Submit Payment</button>
+        </form>
+      	{% endcomment %}
+
+        <div class="step__footer" data-step-footer>
+            <button id="buttonContinue" style="background-color: green;" name="button" type="submit" class="step__footer__continue-btn btn fn-continueButton" data-next-step="2">
+                <span class="btn__content">
+                    Continue to shipping method
+                </span>
+                <svg class="icon-svg icon-svg--size-18 btn__spinner icon-svg--spinner-button" aria-hidden="true" focusable="false"> <use xlink:href="#spinner-button" /> </svg>
+            </button>
+            <a class="step__footer__previous-link" href="/cart">
+              	<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10">
+                  	<path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"/>
+              	</svg>
+              	<span class="step__footer__previous-link-content">Return to cart</span>
+          	</a>
+        </div>
+  	</div>
+</div>
