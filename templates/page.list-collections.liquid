@@ -140,9 +140,6 @@
 // como la consulta de los Tipos de Productos pero con las Colecciones
   $.ajax({
     url: "/admin/collections.json",
-    headers: {
-      "X-Shopify-Storefront-Access-Token": "{{ global_var }}"
-    },
     dataType: "json",
     success: function(results) {
       if (results.collections.length != 0) {
