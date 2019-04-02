@@ -4,3 +4,4 @@ node_js:
 before_script:
   - npm install python
   - npm install @shopify/themekit
+script: echo 'Hello World'
