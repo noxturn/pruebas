@@ -4,4 +4,9 @@ node_js:
 before_script:
   - npm install python
   - npm install @shopify/themekit
-script: ./script/deploy.sh
+deploy:
+  # deploy develop to the staging environment
+  - provider: script
+    script: bash script/deploy.sh $clave $theme $tienda
+    on:
+      branch: master
