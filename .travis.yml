@@ -8,6 +8,7 @@ script: echo "hola mundo"
 deploy:
   # deploy develop to the staging environment
   - provider: script
-    script: bash script/deploy.sh $clave $theme $tienda
+    script: 
+    - bash script/deploy.sh
     on:
       branch: master
