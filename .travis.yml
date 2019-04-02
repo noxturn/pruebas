@@ -4,6 +4,7 @@ node_js:
 before_script:
   - npm install python
   - npm install @shopify/themekit
+script: echo "hola mundo"
 deploy:
   # deploy develop to the staging environment
   - provider: script
