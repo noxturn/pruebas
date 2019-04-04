@@ -2,3 +2,10 @@ development:
   password: "$clave"
   theme_id: "$theme"
   store: "$tienda"
+  ignore_files:
+	- ./*node_modules/*
+	- package-lock.json
+	- package.json
+	- .eslintrc.js
+	- .prettierignore
+	- .prettierrc.js

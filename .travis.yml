@@ -2,7 +2,10 @@ language: node_js
 node_js:
 - lts/*
 before_script:
-  - npm install python
+  - npm install eslint eslint-config-prettier eslint-plugin-jquery prettier eslint-plugin-prettier @shopify/theme-lint --save-dev
+  - curl -s https://shopify.github.io/themekit/script/install.py | sudo python
 script: 
-- curl -s https://shopify.github.io/themekit/scripts/install.py | sudo python
-- theme deploy -na
+  - npm run theme-lint
+  - npm run js-lint
+after_success:
+  - theme deploy -na

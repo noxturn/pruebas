@@ -55,7 +55,9 @@
       "newsletter_email": "メールマガジンに登録しましょう",
       "email_placeholder": "メールアドレス",
       "confirmation": "ご登録ありがとうございます",
-      "submit": "登録する"
+      "newsletter_text": "Bienvenido!",
+      "submit": "登録する",
+      "thanks": "Gracias"
     },
     "filters": {
       "show_more": "表示を増やす",
@@ -294,7 +296,8 @@
       "create_account": "アカウントを作成する"
     },
     "footer": {
-      "social_platform": "{{ name }} on {{ platform }}"
+      "social_platform": "{{ name }} on {{ platform }}",
+      "accepted_payments": "Pagos aceptados"
     }
   },
   "products": {
@@ -305,7 +308,8 @@
       "on_sale": "販売中",
       "quantity": "個数",
       "add_to_cart": "カートに追加する",
-      "back_to_collection": "{{ title }}に戻る"
+      "back_to_collection": "{{ title }}に戻る",
+      "sorry_stock": "Sorry, there are no products in this collection"
     }
   },
   "gift_cards": {
@@ -322,7 +326,7 @@
       "add_to_apple_wallet": "Apple Walletに追加する"
     }
   },
-  "date_formats":{
+  "date_formats": {
     "month_day_year": "%B %d, %Y"
   }
 }

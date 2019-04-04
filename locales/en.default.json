@@ -52,6 +52,8 @@
       "close": "Close search"
     },
     "newsletter_form": {
+      "thanks": "Gracias",
+      "newsletter_text": "Bienvenido!",
       "newsletter_email": "Join our mailing list",
       "email_placeholder": "Email address",
       "confirmation": "Thanks for subscribing",
@@ -294,7 +296,8 @@
       "create_account": "Create account"
     },
     "footer": {
-      "social_platform": "{{ name }} on {{ platform }}"
+      "social_platform": "{{ name }} on {{ platform }}",
+      "accepted_payments": "Pagos aceptados"
     }
   },
   "products": {
@@ -305,7 +308,8 @@
       "on_sale": "Sale",
       "quantity": "Quantity",
       "add_to_cart": "Add to cart",
-      "back_to_collection": "Back to {{ title }}"
+      "back_to_collection": "Back to {{ title }}",
+      "sorry_stock": "Sorry, there are no products in this collection"
     }
   },
   "gift_cards": {
@@ -322,7 +326,7 @@
       "add_to_apple_wallet": "Add to Apple Wallet"
     }
   },
-  "date_formats":{
+  "date_formats": {
     "month_day_year": "%B %d, %Y"
   }
 }
