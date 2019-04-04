@@ -4,7 +4,7 @@ node_js:
 before_script:
   - npm install eslint eslint-config-prettier eslint-plugin-jquery prettier eslint-plugin-prettier @shopify/theme-lint --save-dev
   - npm install python
-  - curl -s https://shopify.github.io/themekit/script/install.py | sudo python
+  - curl -s https://shopify.github.io/themekit/scripts/install.py | sudo python
 script: 
   - npm run theme-lint
   - npm run js-lint
