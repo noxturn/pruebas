@@ -1,7 +1,18 @@
-development:
+shop1:
   password: "$clave"
   theme_id: "$theme"
   store: "$tienda"
+  ignore_files:
+  - "./*node_modules/*"
+  - "package-lock.json"
+  - package.json
+  - .eslintrc.js
+  - .prettierignore
+  - .prettierrc.js
+shop2:
+  password: "passwordtienda2"
+  theme_id: "themetienda2"
+  store: "domaintienda2"
   ignore_files:
   - "./*node_modules/*"
   - "package-lock.json"
