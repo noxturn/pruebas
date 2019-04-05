@@ -1,0 +1,8 @@
+<script>
+  	$( document ).ready(function() {
+      	$('form[action="/cart"] *[type="submit"]').addClass('modified').on('click', function() {
+            window.location.href = '/pages/checkout';
+            return false;
+        })
+    });
+</script>
