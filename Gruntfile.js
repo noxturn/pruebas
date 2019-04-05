@@ -57,6 +57,10 @@ module.exports = function(grunt) {
             test2: {
                 command: hola => `${hola}`, //hola => [`cd ${shop}`, `echo ${hola}`].join('&&'),
             },
+            test3: {
+                command: tienda =>
+                    `./node_modules/.bin/theme-lint shops/${tienda}/`,
+            },
         },
         uglify: {
             // uglify task configuration
@@ -90,9 +94,10 @@ module.exports = function(grunt) {
             )
         }
     })
-    grunt.registerTask('deployModifiedFilesOnEachShop', function() {
+    grunt.registerTask('theme-lint', function() {
         var shops = grunt.file.readYAML('config.yml')
         for (const shop in shops) {
+            grunt.task.run('shell:test3:' + shop)
         }
     })
 }
