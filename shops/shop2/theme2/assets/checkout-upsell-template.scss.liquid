@@ -1,0 +1,114 @@
+.product-box-upsell {
+  	.upsell-subtitle {
+      	font-size: 25px;
+      	padding: 35px 0;
+    }
+  	.ce-countdown-wrapper, .save {
+      	color: #a00000;
+      	font-weight: bolder;
+    }
+  	.selector-wrapper {
+      	span.label {
+          	text-align: left;
+        }
+    }
+  	.btn-dismiss {
+      	background-color: transparent;
+      	border: 0 none;
+      	color: #999;
+      	font-size: 17px;
+      	text-align: center;
+      	display: block;
+      	margin: 20px auto;
+      	&:hover {
+          	background-color: transparent;
+	      	border: 0 none;
+          	color: #999;
+          	text-decoration: underline;
+        }
+    }
+}
+
+.siema-wrapper {
+  	.item {
+  		position: relative;
+      	overflow: hidden;
+      	img {
+          	width: 100%;
+        }
+    }
+  	.slider-dots {
+        position: relative;
+		padding: 10px 0;
+
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      	z-index: 2;
+        button {
+          	-webkit-appearance: none;
+          	border: 0 none;
+            padding: 0;
+            width: 8px;
+            height: 8px;
+            overflow: hidden;
+            border-radius: 50%;
+            background: #d8d8d8;
+            margin: 0 5px;
+            display: inline-block;
+            text-indent: -99999px;
+            -webkit-transition: background .25s cubic-bezier(.23,1,.32,1);
+            transition: background .25s cubic-bezier(.23,1,.32,1);
+            &.active {
+                background: #666;
+            }
+        }
+    }
+  	.siema-nav {
+      	/*display: none !important;*/
+      	position: absolute;
+      	top: calc(50% - 3px);
+      	left: 0;
+      	width: 100%;
+      	height: 0;
+      	transform: translateY(-50%);
+      	button {
+            &.siema-prev,
+          	&.siema-next {
+              	border: 0 none;
+                height: 40px;
+                width: 40px;
+              	margin: 0;
+                line-height: 0px;
+                font-size: 0px;
+                cursor: pointer;
+                background: #fff;
+              	opacity: 0.6;
+                color: transparent;
+                /*top: 45%;*/
+                -webkit-transform: translate(0, -50%);
+                -ms-transform: translate(0, -50%);
+                transform: translate(0, -50%);
+                padding: 0;
+                border-radius: 0;
+                z-index: 2;
+			}
+          	&.siema-prev {
+              	background: url("{{ 'left-arrow-icon.svg' | asset_url }}") no-repeat center center / 20px 20px rgba(0,0,0,0.6);
+                float: left;
+                position: relative;
+                left: 30px;
+            }
+          	&.siema-next {
+              	background: url("{{ 'right-arrow-icon.svg' | asset_url }}") no-repeat center center / 20px 20px rgba(0,0,0,0.6);
+                float: right;
+                position: relative;
+                right: 30px;
+            }
+        }
+      	&.disabled {
+          	display: none !important;
+        }
+    }
+}

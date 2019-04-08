@@ -1,0 +1,201 @@
+<script>
+(function() {
+// con esta funcion abortamos las consultas
+  function abortar(){
+    consultaProd.abort(); //!= null
+    consultaCole.abort();
+    consultaPag.abort();
+  }
+// con esta funcion limpiamos los divs
+  function limpieza() {
+    $("#priColecciones").empty();
+    $("#priProductos").empty();
+    $("#priPaginas").empty();
+  }
+  var timer;
+  var consultaCole = null;
+  var consultaPag = null;
+  var consultaProd = null;
+  var formulario = $('form[action="/search"]').each(function (){
+  var input = $(this).find('input[name="auto"]');
+    //limpiamos el input para las recargas
+      input.val("");
+    //si sacamos el focus del input de busqueda lo limpiamos todo y ocultamos el div de resultados
+    input.on("change", function() {
+      input.val("");
+      //limpieza();
+      //$("#resultados").hide();
+    });
+  //ponemos el autocompletado off y controlamos los tecleos
+  input.attr('autocomplete','off').on('keyup', function() {
+    var buscar = input.val();
+    //$("#resultados").hide();
+    limpieza();
+  // si el input esta vacio limpiamos y abortamos todas las consultas    
+    if ($("input").val() == "") {
+      limpieza();
+      abortar();
+    }else {
+  // si ya hay alguna consulta previa a la nueva se abortan primero
+      if (consultaProd != null || consultaCole != null || consultaPag != null){
+        abortar();
+      }
+  	  clearTimeout(timer);
+  // controlamos q al menos lo ingresado en el input sea de mas de 3 caracteres
+      if (buscar.length>3){
+      timer = setTimeout(function() {
+      //var buscar = input.val();
+  	  var coleccion;    
+  // llamamos a la funcion que hace las consultas ajax
+      consultaProd = llamada('/search?q=title:*'+buscar+'*&type=product&view=json','Productos',buscar);
+      consultaCole = llamada('/collections.json','Colecciones',buscar);
+      consultaPag = llamada('/search?q=title:*'+buscar+'*&type=page&view=json','Paginas',buscar);
+  // mostramos los resultados
+      $("#resultados").show();
+    }, 1000);
+      }
+    }
+  });
+  });
+ function llamada(cadena,nombre,buscar){
+   buscar = buscar.replace(/[.*+?^${}()|[\]\\]/g,"");
+   buscar = buscar.toLowerCase();
+   buscar = encodeURIComponent(buscar);
+   return $.ajax({		
+      url: cadena,
+      dataType: "json",
+      type: "GET",
+      success: function(data) {
+        if(nombre=='Colecciones'){
+          var bandera=0;
+          var control=0;
+          for(i=0;i < data.collections.length;i++){
+            var str = data.collections[i].title;
+            var res = str.toLowerCase();
+            if(res.includes(buscar) && bandera ==0) {
+              pintarTitulo(nombre);
+              bandera=1;
+            }
+            if(res.includes(buscar) && control<3){
+              control+=1;	
+              pintarColeccion(i, str);
+            }
+          }
+        }else if (nombre=='Productos' && data.results.length!=0){
+          pintarTitulo(nombre);
+          for(j=0;j<data.results.length && j<3;j++){
+            pintarProductos(j,data);
+          }
+          if (data.results_count > 3){
+            $("#priProductos").append("<div style='float: left;text-align: center;'><a href='/search?q=title:*"+buscar+"*'><div id='total' style='display: table-caption;'></div></a></div>");
+            $("#total").append("<p>Ver todos los "+data.results_count+" resultados</p>");
+          };
+        }else if (nombre=='Paginas' && data.results.length!=0){
+        	pintarTitulo(nombre);
+          for(e=0;e<data.results.length && e<3;e++){
+            pintarPagina(e,data);
+          }
+        }
+      //$("#resultados").show();
+      },
+      error: function(error) {
+        console.log("Houston, tenemos un problema."+error);
+        console.log(error);
+      }})};
+  
+  function pintarPagina(num, datos){
+ 	$("#divPaginas").append("<a href='/pages/"+datos.results[num].title+"'><div id='pagina"+num+"' style='text-align: left'></div></a>");
+    $("#pagina"+num).append($("<div>", {id : "imgpag" + num, class: "float-left" }));
+    $("#imgpag"+num).append($("<img>", { src: "{{ 'info.png' | asset_img_url: }}", height: "20px" } ));
+                                        $("#pagina"+num).append($("<div>", { id: "cuerpopag"+num}));
+	$("#cuerpopag" + num).append(
+      $("<p>", { class: "negritaazul", text: datos.results[num].title })
+    );
+  }
+  
+  
+ function pintarTitulo(nombre) {
+   //$("#pri"+nombre).append("<div class='divtitulo'><small style='vertical-align: top'><p class='titulo'>"+nombre+"</p></small></div><div id='div"+nombre+"'></div>");
+   
+        $("#pri" + nombre)
+          .append($("<div>", { id: "tit" + nombre, class: "divtitulo" }))
+          .find("#tit" + nombre)
+        .append($("<small style='vertical-align: top'><p class='titulo'>"))
+          .find(".titulo")
+          .text(nombre);
+        $("#pri" + nombre).append($("<div>", { id: "div" + nombre }));
+  }
+  
+ function pintarColeccion(num, texto) {
+    $("#divColecciones").append("<a href='/collections/"+texto+"'><div id='coleccion"+num+"' style='text-align: left'></div></a>");
+    $("#coleccion" + num).append(
+      $("<p>", { class: "negritaazul", text: texto })
+    );
+  }
+  
+ function pintarProductos(i, gProductosCache) {
+        var cadena = gProductosCache.results[i].contenido;
+        //div producto#
+   		  $("#divProductos")
+          .append("<a href='"+gProductosCache.results[i].url
+                  +"'><div id='producto"+i
+                  +"' class='divproductos'></div></a>")
+            
+          
+          .find("#producto" + i)
+          .append($("<div>", { class: "float-left", id: "divimagen" }))
+          .append(
+            $("<div>", {
+              id: "cuerpoprod" + i,
+              class: "float-left prodtitulo demas"
+            })
+          )
+          .find("#divimagen")
+          .append(
+            $("<img>", {
+              src: gProductosCache.results[i].thumbnail,
+              class: "imag"
+            })
+          );
+        //div titprod#
+        $("#cuerpoprod" + i)
+        .append($("<div>", { id: "titprod" + i, style: "text-align: left" }))
+          .append(
+            $("<div>", {
+              style: "height: 90px;overflow:hidden;",
+              id: "bodyprod" + i
+            })
+          )
+          .append($("<div>", { class: "divprecio", id: "precio" + i }))
+          .find("#titprod" + i)
+          .append(
+            $("<p>", {
+              class: "negritaazul margintop",
+              text: gProductosCache.results[i].title
+            })
+          );
+        $("#bodyprod" + i)
+          .append($("<p>", { id: "ptext" + i }))
+          .find("#ptext" + i)
+          .append($("<small>", { text: gProductosCache.results[i].contenido }));
+
+        $("#precio" + i)
+          .append(
+            $("<p>", {
+              class: "precio",
+              text:
+                "$" + gProductosCache.results[i].price + "    ",
+              id: "precioantiguo" + i
+            })
+          )
+          .find("#precioantiguo" + i)
+          .append(
+            $("<span>", {
+              class: "preciotachado",
+              text:
+                "$" + gProductosCache.results[i].price_compare
+            })
+          );
+      }
+})(jQuery);
+</script>

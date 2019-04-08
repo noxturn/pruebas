@@ -81,10 +81,24 @@ module.exports = function(grunt) {
     grunt.registerTask('createYAMLFileOnEachShop', function() {
         //
         var shops = grunt.file.readYAML('config.yml')
+        var result
         for (const shop in shops) {
+            result = ''
+            var nameShopynameTheme = shop.split('-')
+            if (
+                grunt.file.exists(
+                    'shops/' + nameShopynameTheme[0] + '/config.yml'
+                )
+            ) {
+                result += grunt.file.read(
+                    'shops/' + nameShopynameTheme[0] + '/config.yml'
+                )
+            } else result = ''
             grunt.file.write(
-                'shops/' + shop + '/config.yml',
-                shop +
+                'shops/' + nameShopynameTheme[0] + '/config.yml',
+                result +
+                    '\n' +
+                    nameShopynameTheme[1] +
                     ':\n  password: ' +
                     shops[shop].password +
                     '\n  theme_id: ' +
