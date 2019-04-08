@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         for (i = 0; i < foldersNames.length; i++) {
             grunt.task.run('shell:prettier:' + foldersNames[i] + '/theme')
         }
-        if ($TRAVIS_BRANCH == 'ricardo') {
+        if (TRAVIS_BRANCH == 'ricardo') {
             console.log('HOLAAAAAAAAAAA')
         }
         callback()
