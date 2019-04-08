@@ -1,0 +1,101 @@
+<div class="step" data-step="payment_method">
+  	<div class="step__sections">
+
+		<div class="section">
+            <div class="content-box">
+                <div role="grid" class="content-box__row content-box__row--tight-spacing-vertical">
+                    <div role="row" class="review-block">
+                        <div class="review-block__inner">
+                            <div role="gridcell" class="review-block__label">
+                                Contact
+                            </div>
+                            <div role="gridcell" class="review-block__content">
+                                <bdo dir="ltr">direction-example</bdo>
+                            </div>
+                        </div>
+                        <div role="gridcell" class="review-block__link">
+                            <a data-trekkie-id="change_contact_method_link" class="link--small" href="#" rel="noreferrer noopener">
+                                <span aria-hidden="true">Change</span>
+                                <span class="visually-hidden">Change contact information</span>
+                            </a>
+                      	</div>
+                    </div>
+                  	<div role="row" class="review-block">
+                    	<div class="review-block__inner">
+                      		<div role="gridcell" class="review-block__label">
+                        		Ship to
+                      		</div>
+                      		<div role="gridcell" class="review-block__content">
+                              	<address class="address address--tight">
+                                  	ADDRESS EXAMPLE
+                          			<address>
+                          			</address>
+                              	</address>
+                          	</div>
+                      	</div>
+                      	<div role="gridcell" class="review-block__link">
+                          	<a class="link--small" data-trekkie-id="change_shipping_address_link" href="#" rel="noreferrer noopener">
+                        		<span aria-hidden="true">Change</span>
+                        		<span class="visually-hidden">Change shipping address</span>
+                          	</a>
+                      	</div>
+                  	</div>
+
+                  	<div role="row" class="review-block">
+                    	<div class="review-block__inner">
+                      		<div role="gridcell" class="review-block__label">
+                        		Method
+                      		</div>
+                      		<div role="gridcell" class="review-block__content">
+                        		DELIVERY COMPANIES
+                        		·
+                        		<strong class="emphasis">Free</strong>
+                      		</div>
+                    	</div>
+                  	</div>
+                </div>
+            </div>
+        </div>
+
+      	<div class="section section--payment-method">
+          	<div class="section__header">
+              	<h2 class="section__title" id="main-header" tabindex="-1">
+                  	Payment method
+              	</h2>
+              	<p class="section__text">
+                    All transactions are secure and encrypted.
+                </p>
+          	</div>
+
+          	<form class="credit-card-payment" data-action="/charge" data-method="post" id="payment-form">
+                <div class="form-row">
+                    <label for="card-element">
+                        Credit or debit card
+                    </label>
+                    <div id="card-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                    </div>
+                    <!-- Used to display Element errors. -->
+                    <div id="card-errors" role="alert"></div>
+                </div>
+                <button hidden>Submit Payment</button>
+            </form>
+
+      	</div>
+
+        <div class="step__footer" data-step-footer>
+            <button id="buttonPayment" style="background-color: green;" name="button" type="submit" class="step__footer__continue-btn btn">
+                <span class="btn__content">
+                    Complete Order
+                </span>
+                <svg class="icon-svg icon-svg--size-18 btn__spinner icon-svg--spinner-button" aria-hidden="true" focusable="false"> <use xlink:href="#spinner-button" /> </svg>
+            </button>
+            <a class="step__footer__previous-link" href="/cart">
+              	<svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10">
+                  	<path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"/>
+              	</svg>
+              	<span class="step__footer__previous-link-content">Return to cart</span>
+          	</a>
+        </div>
+  	</div>
+</div>

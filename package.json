@@ -4,7 +4,6 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "theme-lint": "theme-lint ./",
         "js-lint": "./node_modules/.bin/eslint ./**/**.js",
         "prettier": "./node_modules/.bin/prettier --check --write ./**"
     },

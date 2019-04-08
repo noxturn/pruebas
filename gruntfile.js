@@ -2,12 +2,14 @@ module.exports = grunt => {
     grunt.loadNpmTasks('grunt-shell')
     grunt.initConfig({
         shell: {
-            command: ['npm run theme-lint'].join('&&'),
+            theme_lint: {
+                command: shop => `./node_modules/.bin/theme-lint shops/${shop}/`,
+            },
         },
     })
     grunt.registerTask('default', ['shell'])
     grunt.registerTask('setShopsConfig', function() {
-        var shops = grunt.file.readYAML('config_env.yml')
+        var shops = grunt.file.readYAML('config.yml')
         var configArray = []
         var configString = ''
         for (let shop in shops) {
@@ -40,13 +42,16 @@ module.exports = grunt => {
 
             configArray[shop] = configString
 
-            grunt.file.write(
-                `shops/${Object.keys(configArray)[0]}/config.yml`,
-                configArray[shop]
-            )
+            grunt.file.write(`shops/${Object.keys(configArray)[0]}/config.yml`,configArray[shop])
 
             configArray = []
             configString = ''
+        }
+    })
+    grunt.registerTask('setShopsConfig', function() {
+        var shops = grunt.file.readYAML('config.yml')
+        for (let shop in shops) {
+            
         }
     })
 }
