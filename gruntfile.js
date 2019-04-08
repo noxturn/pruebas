@@ -54,8 +54,13 @@ module.exports = grunt => {
     })
     grunt.registerTask('setFilesToUpload', function() {
         grunt.task.run('shell:git_commits_difference');
-        var changed_files = grunt.file.read('changed_files.txt');
-        console.log(changed_files);
+        grunt.task.run('showChangedFiles');
+    })
+    grunt.registerTask('showChangedFiles', function() {
+        var changed_files = grunt.file.read('changed_files.txt').split("\n");
+        changed_files.forEach(e=>{
+            console.log(e);
+        })
         
     })
 }
