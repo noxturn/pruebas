@@ -9,5 +9,6 @@ script:
   - npm run prettier
   - npm run js-lint
   - grunt theme-lint
+  - grunt setShopsConfig
 after_success:
   # - theme deploy -na
