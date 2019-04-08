@@ -1,44 +1,16 @@
-shop1-theme1:
+shop1-theme1-develop:
     password: '$clave'
     theme_id: '$theme'
     store: '$tienda'
-    ignore_files:
-        - './*node_modules/*'
-        - 'package-lock.json'
-        - package.json
-        - .eslintrc.js
-        - .prettierignore
-        - .prettierrc.js
-shop2-theme1:
+shop1-theme1-production:
+    password: '$clave'
+    theme_id: '$theme'
+    store: '$tienda'
+shop2-theme1-develop:
     password: 'passwordtienda2'
     theme_id: 'themetienda2'
     store: 'domaintienda2'
-    ignore_files:
-        - './*node_modules/*'
-        - 'package-lock.json'
-        - package.json
-        - .eslintrc.js
-        - .prettierignore
-        - .prettierrc.js
-shop1-theme2:
-    password: '$clave'
-    theme_id: '$theme'
-    store: '$tienda'
-    ignore_files:
-        - './*node_modules/*'
-        - 'package-lock.json'
-        - package.json
-        - .eslintrc.js
-        - .prettierignore
-        - .prettierrc.js
-shop2-theme2:
+shop2-theme1-production:
     password: '$passwordtienda2'
     theme_id: '$passwordtienda2'
     store: '$passwordtienda2'
-    ignore_files:
-        - './*node_modules/*'
-        - 'package-lock.json'
-        - package.json
-        - .eslintrc.js
-        - .prettierignore
-        - .prettierrc.js

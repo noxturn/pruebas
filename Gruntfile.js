@@ -97,18 +97,30 @@ module.exports = function(grunt) {
             var nameShopynameTheme = shop.split('-')
             if (
                 grunt.file.exists(
-                    'shops/' + nameShopynameTheme[0] + '/config.yml'
+                    'shops/' +
+                        nameShopynameTheme[0] +
+                        '/' +
+                        nameShopynameTheme[1] +
+                        '/config.yml'
                 )
             ) {
                 result += grunt.file.read(
-                    'shops/' + nameShopynameTheme[0] + '/config.yml'
+                    'shops/' +
+                        nameShopynameTheme[0] +
+                        '/' +
+                        nameShopynameTheme[1] +
+                        '/config.yml'
                 )
             } else result = ''
             grunt.file.write(
-                'shops/' + nameShopynameTheme[0] + '/config.yml',
+                'shops/' +
+                    nameShopynameTheme[0] +
+                    '/' +
+                    nameShopynameTheme[1] +
+                    '/config.yml',
                 result +
                     '\n' +
-                    nameShopynameTheme[1] +
+                    nameShopynameTheme[2] +
                     ':\n  password: ' +
                     shops[shop].password +
                     '\n  theme_id: ' +
@@ -121,7 +133,9 @@ module.exports = function(grunt) {
     grunt.registerTask('theme-lint', function() {
         var shops = grunt.file.readYAML('config.yml')
         for (const shop in shops) {
-            grunt.task.run('shell:test3:' + shop.replace('-', '/'))
+            var prettier = shop.split('-')
+            console.log(prettier)
+            grunt.task.run('shell:test3:' + prettier[0] + '/' + prettier[1])
         }
     })
 }
