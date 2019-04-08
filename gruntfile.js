@@ -51,7 +51,7 @@ module.exports = grunt => {
     grunt.registerTask('theme-lint', function() {
         var shops = grunt.file.readYAML('config.yml')
         for (let shop in shops) {
-            
+            grunt.task.run('shell:theme_lint:' + shop)
         }
     })
 }
