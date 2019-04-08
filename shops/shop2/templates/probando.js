@@ -3,7 +3,7 @@ var arrayAssociativeProducts = []
 var flag = 0
 var globalPrintAllProducts
 var prueba = []
-// Prueba travis 11 TRAVIS
+// Prueba travis ?? TRAVIS
 /* function paginado(data, pagina) {
 
     var resta = pagina - 2;
