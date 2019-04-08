@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "theme-lint": "theme-lint ./",
-    "js-lint": "./node_modules/.bin/eslint ./**/**.js"
+    "js-lint": "./node_modules/.bin/eslint ./**/**.js",
+    "grunt-default": "./node_modules/.bin/grunt"
   },
   "author": "",
   "license": "ISC",

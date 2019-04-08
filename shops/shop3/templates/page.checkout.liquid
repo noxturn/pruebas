@@ -1,0 +1,63 @@
+{% layout none %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js js cssanimations flexbox no-flexboxtweener anyflexbox floating-labels" lang="en"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+
+<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<meta name="description" content="{{ page_description | escape }}">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+<link rel="canonical" href="{{ canonical_url }}" />
+
+<!-- CSS -->
+{{ 'checkout-plugins.css' | asset_url | stylesheet_tag }}
+{{ 'checkout.scss.css' | asset_url | stylesheet_tag }}
+
+<!-- Specials CSS -->
+{% comment %}
+<link rel="stylesheet" media="all" href="//cdn.shopify.com/app/services/10654711872/assets/69974949952/checkout_stylesheet/v2-ltr-edge-8fa764f57fec1f13853c1c9c858619ff-18293062712269910535" />
+{% endcomment %}
+
+{{ 'checkout-plugins.js' | asset_url | script_tag }}
+
+{% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+{% endif %}
+
+{{ content_for_header }}
+
+<!-- JS -->
+
+<script src="//cdn.shopify.com/app/services/10654711872/javascripts/checkout_countries/69974949952/en/countries-7622a033b739cd9bac92c36ad3b98aa63084cd85-1548932147.js" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.shopifycloud.com/payment-sheet/assets/latest/dynamic-web-checkout.js"></script>
+
+<script type="text/javascript">
+	document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+</script>
+
+</head>
+<body>
+
+  	{% comment %} Hidden element to prevent search app injection {% endcomment %}
+  	<div class="hidden" style="display: none; visibility: hidden; height: 0px;">
+	  	<input name="q" />
+  	</div>
+
+  	{% section 'checkout-template' %}
+
+  	<!-- JS -->
+	<script src="https://js.stripe.com/v3/"></script>
+	<script>var shop = '{{ shop.permanent_domain }}';</script>
+	{{ 'checkout.js' | asset_url | script_tag }}
+
+</body>
+</html>

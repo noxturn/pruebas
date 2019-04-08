@@ -9,6 +9,7 @@ shop1:
   - .eslintrc.js
   - .prettierignore
   - .prettierrc.js
+  - gruntfile.js
 shop2:
   password: "passwordtienda2"
   theme_id: "themetienda2"
@@ -20,3 +21,4 @@ shop2:
   - .eslintrc.js
   - .prettierignore
   - .prettierrc.js
+  - gruntfile.js
