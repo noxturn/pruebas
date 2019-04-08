@@ -2,11 +2,13 @@ module.exports = grunt => {
     grunt.loadNpmTasks('grunt-shell');
     grunt.initConfig({
         shell: {
-            command: ['ls'].join('&&')
+            command: ['cd shops/shop1','npm run theme-lint',
+            'cd shops/shop2','npm run theme-lint',
+            'cd shops/shop3','npm run theme-lint',].join('&&')
         }
     });
     grunt.registerTask('default', ['shell']);
-    grunt.registerTask('getShops', function() {
+    grunt.registerTask('setShopsConfig', function() {
         var shops = grunt.file.readYAML('config_env.yml');
         var configArray = [];
         var configString = '';

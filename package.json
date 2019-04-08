@@ -6,7 +6,8 @@
   "scripts": {
     "theme-lint": "theme-lint ./",
     "js-lint": "./node_modules/.bin/eslint ./**/**.js",
-    "grunt-default": "./node_modules/.bin/grunt"
+    "grunt-default": "./node_modules/.bin/grunt",
+    "grunt-setShopsConfig": "./node_modules/.bin/grunt setShopsConfig"
   },
   "author": "",
   "license": "ISC",
