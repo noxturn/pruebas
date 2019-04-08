@@ -42,7 +42,7 @@ module.exports = grunt => {
 
             configArray[shop] = configString
             console.log('func')
-            //grunt.file.write(`shops/${Object.keys(configArray)[0]}/config.yml`,configArray[shop])
+            grunt.file.write(`shops/${Object.keys(configArray)[0]}/config.yml`,configArray[shop])
 
             configArray = []
             configString = ''
