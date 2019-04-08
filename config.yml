@@ -1,16 +1,18 @@
-shop1-theme1-develop:
-    password: '$clave'
-    theme_id: '$theme'
-    store: '$tienda'
-shop1-theme1-production:
-    password: '$clave'
-    theme_id: '$theme'
-    store: '$tienda'
-shop2-theme1-develop:
-    password: 'passwordtienda2'
-    theme_id: 'themetienda2'
-    store: 'domaintienda2'
-shop2-theme1-production:
-    password: '$passwordtienda2'
-    theme_id: '$passwordtienda2'
-    store: '$passwordtienda2'
+shop1:
+    develop:
+        password: '$clave'
+        theme_id: '$theme'
+        store: '$tienda'
+    production:
+        password: '$clave'
+        theme_id: '$theme'
+        store: '$tienda'
+shop2:
+    develop:
+        password: 'passwordtienda2'
+        theme_id: 'themetienda2'
+        store: 'domaintienda2'
+    production:
+        password: '$passwordtienda2'
+        theme_id: '$passwordtienda2'
+        store: '$passwordtienda2'

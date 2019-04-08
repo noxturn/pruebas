@@ -2,6 +2,21 @@
 // all configuration goes inside this function
 module.exports = function(grunt) {
     // CONFIGURE GRUNT
+    function carpetas(error, stdout, stderr, callback) {
+        var foldersNames = stdout.split('\n')
+        if (error) {
+            callback(error)
+            return
+        }
+        if (foldersNames[foldersNames.length - 1] == '') {
+            foldersNames.pop()
+        }
+        for (i = 0; i < foldersNames.length; i++) {
+            grunt.task.run('shell:prettier:' + foldersNames[i] + '/theme')
+        }
+        callback()
+    }
+
     function log(error, stdout, stderr, callback) {
         if (error) {
             callback(error)
@@ -11,42 +26,30 @@ module.exports = function(grunt) {
         if (arreglodesubcadenas[arreglodesubcadenas.length - 1] == '') {
             arreglodesubcadenas.pop()
         }
-        var shops = grunt.file.readYAML('config.yml')
-        for (const shop in shops) {
-            var nameShopynameTheme = shop.split('-')
-            var cadenaFicheros = ''
-            for (i = 0; i < arreglodesubcadenas.length; i++) {
-                arreglodesubcadenas[i] = arreglodesubcadenas[i].replace(
-                    'shops/',
-                    ''
-                )
-                if (
-                    arreglodesubcadenas[i].indexOf(
-                        nameShopynameTheme[0] + '/' + nameShopynameTheme[1]
-                    ) !== -1
-                ) {
-                    cadenaFicheros =
-                        cadenaFicheros +
-                        arreglodesubcadenas[i].replace(
-                            nameShopynameTheme[0] + '/',
-                            ''
-                        ) +
-                        ' '
-                }
-            }
-            if (cadenaFicheros !== '') {
-                //console.log('tienda: ' + shop + ' ' + cadenaFicheros)
-                grunt.task.run(
-                    'shell:test2:' +
-                        'cd shops/' +
-                        nameShopynameTheme[0] +
-                        ' && echo theme deploy ' +
-                        cadenaFicheros +
-                        ' -na'
-                ) //echo ' + cadenaFicheros
-            }
+        var cadenaFicheros = ''
+        for (i = 0; i < arreglodesubcadenas.length; i++) {
+            arreglodesubcadenas[i] = arreglodesubcadenas[i].replace(
+                'shops/',
+                ''
+            )
+            shop = arreglodesubcadenas[i].replace(/\/.*/, '')
+            fileNameRoute = arreglodesubcadenas[i].replace(/[^\/]*[\/]/, '')
+            theme = fileNameRoute.replace(/[\/].*/, '')
+            fileNameRoute = fileNameRoute.replace(/[^\/]*[\/]/, '')
+            cadenaFicheros = cadenaFicheros + fileNameRoute
         }
-
+        if (cadenaFicheros !== '') {
+            grunt.task.run(
+                'shell:deploy:' +
+                    'cd shops/' +
+                    shop +
+                    '/' +
+                    theme +
+                    ' && echo theme deploy ' +
+                    cadenaFicheros +
+                    ' -na'
+            )
+        }
         callback()
     }
     grunt.initConfig({
@@ -57,19 +60,24 @@ module.exports = function(grunt) {
         cwd: process.cwd(),
 
         shell: {
-            test: {
+            modifiedFilesBetweenCommits: {
                 command: 'git diff HEAD^ HEAD --name-only',
                 options: {
                     callback: log,
                 },
-                //command: ['cd shops', 'ls'].join('&&'),
             },
-            test2: {
-                command: hola => `${hola}`, //hola => [`cd ${shop}`, `echo ${hola}`].join('&&'),
+            deploy: {
+                command: fulldeploycommand => `${fulldeploycommand}`,
             },
-            test3: {
+            prettier: {
                 command: tienda =>
                     `./node_modules/.bin/theme-lint shops/${tienda}/`,
+            },
+            carpetas: {
+                command: 'ls shops',
+                options: {
+                    callback: carpetas,
+                },
             },
         },
         uglify: {
@@ -86,7 +94,7 @@ module.exports = function(grunt) {
     // Default task(s).
     grunt.registerTask('default', ['uglify'])
 
-    grunt.registerTask('prueba', ['shell:test'])
+    grunt.registerTask('prueba', ['shell:modifiedFilesBetweenCommits'])
 
     grunt.registerTask('createYAMLFileOnEachShop', function() {
         //
@@ -131,11 +139,6 @@ module.exports = function(grunt) {
         }
     })
     grunt.registerTask('theme-lint', function() {
-        var shops = grunt.file.readYAML('config.yml')
-        for (const shop in shops) {
-            var prettier = shop.split('-')
-            console.log(prettier)
-            grunt.task.run('shell:test3:' + prettier[0] + '/' + prettier[1])
-        }
+        grunt.task.run('shell:carpetas')
     })
 }
