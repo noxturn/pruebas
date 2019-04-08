@@ -1,0 +1,85 @@
+.bus {
+  display: none;
+}
+
+.demas {
+  overflow: hidden;
+}
+
+a,
+a:active,
+a:focus {
+  outline: none;
+}
+
+.divtitulo {
+  width: 425px;
+  border-bottom: gray 1px dashed;
+  height: 15px;
+  border-top: gray 1px dashed;
+}
+
+.titulo {
+  color: gray;
+  display: contents;
+}
+
+.negritaazul {
+  color: blue;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.divproductos {
+  height: 150px;
+  width: 500px;
+}
+
+.float-left {
+  float: left;
+}
+
+.imag {
+  width: 150px;
+  height: 150px;
+}
+
+.prodtitulo {
+  width: 50%;
+  height: 150px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.margintop {
+  margin-top: 0;
+}
+
+#buscar {
+  transform: scale(0.7);
+  position: absolute;
+  top: 0;
+  transform-origin: 0 0;
+}
+
+.precio {
+  text-align: left;
+  color: #1e3f5a;
+  bottom: 0;
+}
+
+.divprecio {
+  bottom: 0;
+  position: absolute;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.preciotachado {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.cantidad {
+  color: blue;
+}

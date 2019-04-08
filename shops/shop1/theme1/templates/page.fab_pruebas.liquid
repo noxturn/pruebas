@@ -1,0 +1,77 @@
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="section-header text-center">
+        <h1>{{ page.title }}</h1>
+      </div>
+
+      <div class="rte">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    var all_collections_url = "https://massiveshops-dev.myshopify.com/admin/collections.json";
+    var all_products_url = "https://massiveshops-dev.myshopify.com/admin/products.json";
+
+    var collections = [];
+    var products = [];
+  	var productTypes = [];
+    
+    function getData(url, ...fields){
+        if(fields){
+            url += "?fields="+fields;
+        }
+
+        $.ajax({
+            url: url,
+            success: function(response){
+                console.log(response);
+                if(response.collections){
+                    fillCollectionsArray(response.collections);
+                }else if(response.products){
+                    fillProductsArray(response.products);
+                }
+            },
+            error: function(error){
+                console.log(error);
+            },
+        });
+    }
+
+    function fillCollectionsArray(data){
+
+        data.forEach(e=>{
+            collections.push(e);
+        });
+    }
+
+    function fillProductsArray(data){
+
+        data.forEach(e=>{
+            products.push(e);
+        });
+      	fillProductTypesArray(products);
+    }
+  
+  	function fillProductTypesArray(products){
+        products.forEach(p=>{
+            if(!(p.product_type in productTypes)){
+                productTypes[p.product_type] = [];
+                productTypes[p.product_type].push(p);
+            }else{
+                productTypes[p.product_type].push(p);
+                
+            }
+        });
+        console.log(productTypes);
+    }
+
+    getData(all_collections_url);
+    getData(all_products_url,'title','id','product_type');
+  
+  console.log()
+  
+</script>

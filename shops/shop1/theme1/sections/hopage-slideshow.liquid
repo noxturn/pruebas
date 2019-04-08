@@ -1,0 +1,360 @@
+{% if section.settings.slider-width == 'full-width' %}
+<div class="container-fluid homepage-slider-container">
+	<div class="row">
+		<div class="page-width col-md-12">
+{% else %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="page-width col-md-12">
+{% endif %}
+
+           	<div class="row">
+              	<!-- Images Slideshow -->
+                <div class="homepage-slider siema-slider">
+
+                  	<!-- Default Slideshows -->
+                  	<div class="item item-4">
+                        <a href="/collections/best-sellers" class="slideshow__link">
+                          	<div data-src="{{'slide-holiday-sales.jpg' | asset_url }}" class="siema-image siema-lazy"></div>
+                          	<div class="siema-caption text">
+                              	<img class="lazyload" data-src="{{ 'txt-holiday-sales.png' | asset_url }}" />
+                                <div class="btn btn-default btn-slide">
+                                   <span>SHOP NOW</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                  
+                  	<div class="item item-2">
+                        <a href="/collections/sale" class="slideshow__link">
+                          	<div data-src="{{'slide-sale.jpg' | asset_url }}" class="siema-image siema-lazy"></div>
+                          	<div class="siema-caption text">
+                              	<img class="lazyload" data-src="{{ 'slide-sale-text.png' | asset_url }}" />
+                            </div>
+                        </a>
+                    </div>
+                  
+                  	<div class="item item-1">
+                        <a href="/collections/best-sellers" class="slideshow__link">
+                          	<div data-src="{{'slide-temporal.jpg' | asset_url }}" class="siema-image siema-lazy"></div>
+                          	<div class="siema-caption text">
+                              	<img class="lazyload" data-src="{{ 'slide-text.png' | asset_url }}" />
+                                <div class="btn btn-default btn-slide">
+                                   <span>SHOP NOW</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                  	<div class="item item-3">
+                        <a href="/collections/new-arrivals" class="slideshow__link">
+                          	<div data-src="{{'slide-free-shipping.jpg' | asset_url }}" class="siema-image siema-lazy"></div>
+                          	<div class="siema-caption text">
+                              	<img class="lazyload" data-src="{{ 'slide-free-shipping-text.png' | asset_url }}" />
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+              	<div class="siema-nav">
+              		<button class="siema-prev">&lt;</button>
+              		<button class="siema-next">&gt;</button>
+                </div>
+
+              	<script>
+                  	//var startHomeSlide = window.homeSliderPosition || 0;
+                  
+                    function load_homepage_slider() {
+
+                        Siema.prototype.createDots = function() {
+                            var that = this;
+                            var wrapper = document.createElement('div');
+                                wrapper.className = 'slider-dots';
+
+                            that.innerElements.forEach(function(element, index) {
+                                var btn = document.createElement('button');
+
+                                if (index === that.currentSlide) {
+                                    btn.className = 'active';
+                                }
+
+                                btn.setAttribute('data-index', index);
+                                btn.textContent = index;
+                                btn.addEventListener('click', () => that.goTo(index));
+
+                                wrapper.appendChild(btn);
+                            });
+
+                            this.selector.appendChild(wrapper);
+                        }
+                        
+                        Siema.prototype.loadLazy = function() {
+                            var that = this;
+                          
+                          	var lazys = $(that.selector).find('.siema-lazy');
+                          	
+                          	lazys.each(function(index, lazy){
+                              	//console.log(index, $(lazy).attr('data-src'));
+                              	var bgUrl = $(lazy).attr('data-src');
+                              
+                              	//console.log(bgUrl)
+                              
+                              	$(lazy).css('background-image', 'url(' + bgUrl + ')');
+                            })
+                        }
+
+                        window.homepage_slider = new Siema({
+                          
+                            startIndex:  window.homeSliderPosition || 0,
+                            selector: '.homepage-slider',
+                            draggable: false,
+                            multipleDrag : false,
+                            perPage: 1,
+                            loop: true,
+                            onInit: function() {
+                                var that = this;
+                                    that.createDots();
+                              		that.loadLazy();
+
+                                window.addEventListener('resize', function() {
+                                    if (window.innerWidth <= 768) {
+                                        that.createDots();
+                                    }
+                                })
+                            },
+                            onChange: function() {
+                                $('.slider-dots button').removeClass('active');
+                                $('.slider-dots button[data-index=' + this.currentSlide + ']').addClass('active');
+
+                                //$(this.currentSlide).addClass('active');
+
+                                //console.log(this.currentSlide);
+                                $('.homepage-slider .item').removeClass('active');
+                                $('.homepage-slider .item[data-index=' + this.currentSlide + ']').addClass('active');
+
+                                localStorage.removeItem('sliderLastElementVisible');
+
+                                //Handle Video events
+
+                                /* The current slider contains video */
+                                if ($('.homepage-slider .item[data-index=' + this.currentSlide + ']').find('.video').length) {
+                                    var video = $('.homepage-slider .item[data-index=' + this.currentSlide + ']').find('.video');
+                                    var videoLength = video.length;
+                                    if( videoLength ) {
+
+                                        var icon = $('.homepage-slider .item[data-index=' + this.currentSlide + ']').find('.video-overlay');
+
+                                        var vidLoading = $('.homepage-slider .item[data-index=' + this.currentSlide + ']').find('.video-loading');
+
+                                        var vid = video[0];
+
+                                        function initVideo(){
+                                            vid.pause();
+
+                                            var readyState = vid.readyState;
+                                            //console.log('Estate: ' + readyState);
+
+                                            var duration = vid.duration;
+                                            //console.log('Duration: ' + duration);
+
+                                            var hasBuffer = vid.buffered.length;
+                                            //console.log('buffer length: ' + hasBuffer);
+
+                                            /* Into a loop to make sure the element is created */
+                                            var loop = setTimeout(function () {
+                                                //console.log(vid.buffered.end(0))
+                                                if (hasBuffer > 0) {
+                                                  var bufferStart = vid.buffered.start(0);
+                                                  var bufferEnd = vid.buffered.end(0);
+
+                                                  //console.log('Buffer End: ' + bufferEnd);
+                                                  if (bufferEnd >= duration / 2) {
+                                                      clearTimeout(loop);
+                                                      icon.fadeOut('fast');
+                                                      vidLoading.fadeOut('fast');
+                                                      vid.play();
+
+                                                      //console.log('All buffered')
+                                                  }
+                                                  else {
+                                                      vidLoading.fadeIn('fast');
+                                                      initVideo();
+                                                  }
+                                                } else {
+                                                    initVideo();
+                                                }
+                                            }, 500)
+                                        }
+                                        if (vid.paused) {
+                                            //vid.play();
+                                            initVideo();
+                                        } else {
+                                            icon.fadeIn('fast');
+                                            vid.pause();
+                                        }
+
+                                        if (video[0].paused) {
+                                            /* Not Start the video when leave ALWAYS PAUSE */
+
+                                            //video[0].play();
+
+                                            //console.log('paused')
+                                            initVideo();
+                                            icon.fadeIn('fast');
+                                        } else {
+                                            /* Pause the video if running when leave ALWAYS PAUSE */
+                                            video[0].pause();
+                                            icon.fadeIn('fast');
+                                        }
+                                    }
+                                }
+
+
+                                if (this.currentSlide === $('.homepage-slider .slider-dots button').length - 1) {
+                                    localStorage.setItem('sliderLastElementVisible', true);
+                                }
+                            },
+                        });
+                      
+                      	// Enable navigation 
+                      	$('.siema-prev').on("click", function() {
+                            homepage_slider.prev();
+                       	});
+
+                        $('.siema-next').on("click", function() {
+                          homepage_slider.next();
+                        });
+                    }                  
+              	</script>
+
+                <script>
+                $(document).ready( function() {
+                 	load_homepage_slider();
+                });
+
+                </script>
+            </div>
+		</div>
+	</div>
+</div>
+          
+
+{% schema %}
+{
+  "name": "Slideshow (only code)",
+  "class": "homepage-section--slideshow-wrapper wow fadeIn",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "select",
+      "id": "slider-animation",
+      "label": "Transition effect",
+      "options": [
+        {
+          "value": "slide",
+          "label": "Slide"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        }
+      ],
+      "default": "slide"
+    },
+    {
+      "type": "select",
+      "id": "slider-width",
+      "label": "Width",
+      "options": [
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        },
+        {
+          "value": "full-width",
+          "label": "Full width"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "select",
+      "id": "slider-slide-time",
+      "label": "Rotation interval",
+      "options": [
+        {
+          "value": "0",
+          "label": "No rotation"
+        },
+        {
+          "value": "3000",
+          "label": "3 Seconds"
+        },
+        {
+          "value": "4000",
+          "label": "4 Seconds"
+        },
+        {
+          "value": "5000",
+          "label": "5 Seconds"
+        },
+        {
+          "value": "6000",
+          "label": "6 Seconds"
+        },
+        {
+          "value": "7000",
+          "label": "7 Seconds"
+        },
+        {
+          "value": "8000",
+          "label": "8 Seconds"
+        }
+      ],
+      "default": "4000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Slide link"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Slideshow (code)",
+    "category": "Image",
+    "settings": {
+      "slider-slide-time": "5000"
+    },
+    "blocks": [
+      {
+        "type": "image"
+      },
+      {
+        "type": "image"
+      }
+    ]
+  }]
+}
+{% endschema %}
+
+          
+            
+          
