@@ -1,24 +1,30 @@
 shop1:
-  password: "$clave"
-  theme_id: "$theme"
-  store: "$tienda"
-  ignore_files:
-  - "./*node_modules/*"
-  - "package-lock.json"
-  - package.json
-  - .eslintrc.js
-  - .prettierignore
-  - .prettierrc.js
-  - gruntfile.js
+    development:
+        password: shop1-devTheme-pass
+        theme_id: '123'
+        store: can-i-buy-a-feeling.myshopify.com
+        proxy: http://localhost:3000
+        ignore_files:
+            - '*.gif'
+            - '*.jpg'
+            - config/settings_data.json
 shop2:
-  password: "passwordtienda2"
-  theme_id: "themetienda2"
-  store: "domaintienda2"
-  ignore_files:
-  - "./*node_modules/*"
-  - "package-lock.json"
-  - package.json
-  - .eslintrc.js
-  - .prettierignore
-  - .prettierrc.js
-  - gruntfile.js
+    development:
+        password: shop2-devTheme-pass
+        theme_id: '123'
+        store: can-i-buy-a-feeling.myshopify.com
+        proxy: http://localhost:3000
+        ignore_files:
+            - '*.gif'
+            - '*.jpg'
+            - config/settings_data.json
+shop3:
+    development:
+        password: shop3-devTheme-pass
+        theme_id: '123'
+        store: can-i-buy-a-feeling.myshopify.com
+        proxy: http://localhost:3000
+        ignore_files:
+            - '*.gif'
+            - '*.jpg'
+            - config/settings_data.json

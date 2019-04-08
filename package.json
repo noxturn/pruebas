@@ -1,24 +1,23 @@
 {
-  "name": "travis-ci",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "theme-lint": "theme-lint ./",
-    "js-lint": "./node_modules/.bin/eslint ./**/**.js",
-    "grunt-default": "./node_modules/.bin/grunt",
-    "grunt-setShopsConfig": "./node_modules/.bin/grunt setShopsConfig"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@shopify/theme-lint": "^2.0.0",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-plugin-jquery": "^1.5.0",
-    "eslint-plugin-prettier": "^3.0.1",
-    "grunt": "^1.0.4",
-    "grunt-shell": "^3.0.1",
-    "prettier": "^1.16.4"
-  }
+    "name": "travis-ci",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "theme-lint": "theme-lint ./",
+        "js-lint": "./node_modules/.bin/eslint ./**/**.js",
+        "prettier": "./node_modules/.bin/prettier --check --write ./**"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@shopify/theme-lint": "^2.0.0",
+        "eslint": "^5.16.0",
+        "eslint-config-prettier": "^4.1.0",
+        "eslint-plugin-jquery": "^1.5.0",
+        "eslint-plugin-prettier": "^3.0.1",
+        "grunt": "^1.0.4",
+        "grunt-shell": "^3.0.1",
+        "prettier": "^1.16.4"
+    }
 }

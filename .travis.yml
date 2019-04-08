@@ -6,8 +6,7 @@ before_script:
   - npm install python
   - curl -s https://shopify.github.io/themekit/scripts/install.py | sudo python
 script: 
-  - npm run grunt-default
-  # npm run theme-lint #gotta run this inside every shop one by one in travis (by grunt)
+  - npm run prettier
   - npm run js-lint
 after_success:
   # - theme deploy -na

@@ -1,56 +1,52 @@
 module.exports = grunt => {
-    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-shell')
     grunt.initConfig({
         shell: {
-            command: ['cd shops/shop1','npm run theme-lint',
-            'cd shops/shop2','npm run theme-lint',
-            'cd shops/shop3','npm run theme-lint',].join('&&')
-        }
-    });
-    grunt.registerTask('default', ['shell']);
+            command: ['npm run theme-lint'].join('&&'),
+        },
+    })
+    grunt.registerTask('default', ['shell'])
     grunt.registerTask('setShopsConfig', function() {
-        var shops = grunt.file.readYAML('config_env.yml');
-        var configArray = [];
-        var configString = '';
-        for (let shop in shops){
-
+        var shops = grunt.file.readYAML('config_env.yml')
+        var configArray = []
+        var configString = ''
+        for (let shop in shops) {
             for (let env in shops[shop]) {
+                configString += env
 
-                configString += env;
-                
                 for (let attr in shops[shop][env]) {
-
-                    if(attr == 'ignore_files'){
-
-                        configString += '\n  ' + attr + ':' 
+                    if (attr == 'ignore_files') {
+                        configString += '\n  ' + attr + ':'
 
                         for (let file in shops[shop][env][attr]) {
-
-                            if(shops[shop][env][attr][file].startsWith('*')){
-
-                                configString += ' \n    - "' + shops[shop][env][attr][file] + '"';
-
+                            if (shops[shop][env][attr][file].startsWith('*')) {
+                                configString +=
+                                    ' \n    - "' +
+                                    shops[shop][env][attr][file] +
+                                    '"'
                             } else {
-
-                                configString += ' \n    - ' + shops[shop][env][attr][file];
+                                configString +=
+                                    ' \n    - ' + shops[shop][env][attr][file]
                             }
                         }
-
                     } else {
-
-                        configString += '\n  ' + attr + ': '+shops[shop][env][attr];
+                        configString +=
+                            '\n  ' + attr + ': ' + shops[shop][env][attr]
                     }
                 }
 
-                configString += '\n';
+                configString += '\n'
             }
 
-            configArray[shop] = configString;
+            configArray[shop] = configString
 
-            grunt.file.write(`shops/${Object.keys(configArray)[0]}/config.yml`,configArray[shop]);
+            grunt.file.write(
+                `shops/${Object.keys(configArray)[0]}/config.yml`,
+                configArray[shop]
+            )
 
-            configArray = [];
-            configString = '';
+            configArray = []
+            configString = ''
         }
-    });
+    })
 }
