@@ -102,7 +102,32 @@ module.exports = function(grunt) {
         var result
         for (const shop in shops) {
             result = ''
-            var nameShopynameTheme = shop.split('-')
+            for (const entorno in shops[shop]) {
+                console.log(shops[shop][entorno].password)
+
+                if (
+                    grunt.file.exists(
+                        'shops/' + shop + '/' + 'theme/config.yml'
+                    )
+                ) {
+                    result += grunt.file.read(
+                        'shops/' + shop + '/' + 'theme/config.yml'
+                    )
+                } else result = ''
+                grunt.file.write(
+                    'shops/' + shop + '/' + 'theme/config.yml',
+                    result +
+                        '\n' +
+                        entorno +
+                        ':\n  password: ' +
+                        shops[shop][entorno].password +
+                        '\n  theme_id: ' +
+                        shops[shop][entorno].theme_id +
+                        '\n  store: ' +
+                        shops[shop][entorno].store
+                )
+                /*
+            //var nameShopynameTheme = shop.split('-')
             if (
                 grunt.file.exists(
                     'shops/' +
@@ -135,7 +160,8 @@ module.exports = function(grunt) {
                     shops[shop].theme_id +
                     '\n  store: ' +
                     shops[shop].store
-            )
+            )*/
+            }
         }
     })
     grunt.registerTask('theme-lint', function() {
