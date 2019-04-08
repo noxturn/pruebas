@@ -6,7 +6,7 @@ module.exports = grunt => {
                 command: shop => `./node_modules/.bin/theme-lint shops/${shop}/` //try to do this with a npm script
             },
             git_commits_difference: {
-                command: 'git diff HEAD^ HEAD --name-only'
+                command: 'git diff HEAD^ HEAD --name-only >> changed_files.txt'
             }
         },
     })
@@ -53,7 +53,9 @@ module.exports = grunt => {
         }
     })
     grunt.registerTask('setFilesToUpload', function() {
-        var changed_files = grunt.task.run('shell:git_commits_difference')
+        grunt.task.run('shell:git_commits_difference');
+        var changed_files = grunt.file.read('changed_files.txt');
         console.log(changed_files);
+        
     })
 }
