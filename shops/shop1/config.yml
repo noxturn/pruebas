@@ -1,5 +1,14 @@
 development
-  password: shop1-devTheme-pass
+  password: shop1-Theme-pass
+  theme_id: 123
+  store: can-i-buy-a-feeling.myshopify.com
+  proxy: http://localhost:3000
+  ignore_files: 
+    - "*.gif" 
+    - "*.jpg" 
+    - config/settings_data.json
+test
+  password: shop1-Theme-pass
   theme_id: 123
   store: can-i-buy-a-feeling.myshopify.com
   proxy: http://localhost:3000
