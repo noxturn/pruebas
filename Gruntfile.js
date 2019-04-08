@@ -14,6 +14,9 @@ module.exports = function(grunt) {
         for (i = 0; i < foldersNames.length; i++) {
             grunt.task.run('shell:prettier:' + foldersNames[i] + '/theme')
         }
+        if ($TRAVIS_BRANCH == 'ricardo') {
+            console.log('HOLAAAAAAAAAAA')
+        }
         callback()
     }
 
@@ -126,41 +129,6 @@ module.exports = function(grunt) {
                         '\n  store: ' +
                         shops[shop][entorno].store
                 )
-                /*
-            //var nameShopynameTheme = shop.split('-')
-            if (
-                grunt.file.exists(
-                    'shops/' +
-                        nameShopynameTheme[0] +
-                        '/' +
-                        nameShopynameTheme[1] +
-                        '/config.yml'
-                )
-            ) {
-                result += grunt.file.read(
-                    'shops/' +
-                        nameShopynameTheme[0] +
-                        '/' +
-                        nameShopynameTheme[1] +
-                        '/config.yml'
-                )
-            } else result = ''
-            grunt.file.write(
-                'shops/' +
-                    nameShopynameTheme[0] +
-                    '/' +
-                    nameShopynameTheme[1] +
-                    '/config.yml',
-                result +
-                    '\n' +
-                    nameShopynameTheme[2] +
-                    ':\n  password: ' +
-                    shops[shop].password +
-                    '\n  theme_id: ' +
-                    shops[shop].theme_id +
-                    '\n  store: ' +
-                    shops[shop].store
-            )*/
             }
         }
     })
