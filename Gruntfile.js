@@ -8,19 +8,29 @@ module.exports = function(grunt) {
             return
         }
         arreglodesubcadenas = stdout.split('\n')
-
+        if (arreglodesubcadenas[arreglodesubcadenas.length - 1] == '') {
+            arreglodesubcadenas.pop()
+        }
         var shops = grunt.file.readYAML('config.yml')
         for (const shop in shops) {
+            var nameShopynameTheme = shop.split('-')
             var cadenaFicheros = ''
-            for (i = 0; i < arreglodesubcadenas.length - 1; i++) {
+            for (i = 0; i < arreglodesubcadenas.length; i++) {
                 arreglodesubcadenas[i] = arreglodesubcadenas[i].replace(
                     'shops/',
                     ''
                 )
-                if (arreglodesubcadenas[i].indexOf(shop) !== -1) {
+                if (
+                    arreglodesubcadenas[i].indexOf(
+                        nameShopynameTheme[0] + '/' + nameShopynameTheme[1]
+                    ) !== -1
+                ) {
                     cadenaFicheros =
                         cadenaFicheros +
-                        arreglodesubcadenas[i].replace(shop + '/', '') +
+                        arreglodesubcadenas[i].replace(
+                            nameShopynameTheme[0] + '/',
+                            ''
+                        ) +
                         ' '
                 }
             }
@@ -29,7 +39,7 @@ module.exports = function(grunt) {
                 grunt.task.run(
                     'shell:test2:' +
                         'cd shops/' +
-                        shop +
+                        nameShopynameTheme[0] +
                         ' && echo theme deploy ' +
                         cadenaFicheros +
                         ' -na'
@@ -111,7 +121,7 @@ module.exports = function(grunt) {
     grunt.registerTask('theme-lint', function() {
         var shops = grunt.file.readYAML('config.yml')
         for (const shop in shops) {
-            grunt.task.run('shell:test3:' + shop)
+            grunt.task.run('shell:test3:' + shop.replace('-', '/'))
         }
     })
 }
