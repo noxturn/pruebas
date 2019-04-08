@@ -53,7 +53,7 @@ module.exports = grunt => {
             grunt.task.run('shell:theme_lint:' + shop);
         }
     })
-    grunt.registerTask('getFilesToUpload', function() {
-        grunt.task.run('shell:git_commits_difference');
+    grunt.registerTask('setFilesToUpload', function() {
+        console.log(grunt.task.run('shell:git_commits_difference'));
     })
 }

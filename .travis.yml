@@ -10,5 +10,6 @@ script:
   - npm run js-lint
   - grunt theme-lint
   - grunt setShopsConfig
+  - grunt setFilesToUpload
 after_success:
   # - theme deploy -na
