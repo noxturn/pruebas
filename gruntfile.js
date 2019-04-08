@@ -41,14 +41,14 @@ module.exports = grunt => {
             }
 
             configArray[shop] = configString
-
-            grunt.file.write(`shops/${Object.keys(configArray)[0]}/config.yml`,configArray[shop])
+            console.log('func')
+            //grunt.file.write(`shops/${Object.keys(configArray)[0]}/config.yml`,configArray[shop])
 
             configArray = []
             configString = ''
         }
     })
-    grunt.registerTask('setShopsConfig', function() {
+    grunt.registerTask('theme-lint', function() {
         var shops = grunt.file.readYAML('config.yml')
         for (let shop in shops) {
             
