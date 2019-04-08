@@ -1,9 +1,0 @@
-
-theme1:
-  password: $clave
-  theme_id: $theme
-  store: $tienda
-theme2:
-  password: $clave
-  theme_id: $theme
-  store: $tienda
