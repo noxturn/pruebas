@@ -8,5 +8,6 @@ before_script:
 script: 
   - npm run prettier
   - npm run js-lint
+  - grunt theme-lint
 after_success:
   # - theme deploy -na
