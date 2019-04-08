@@ -2,8 +2,7 @@ language: node_js
 node_js:
 - lts/*
 before_script:
-  - npm install -g grunt-cli
-  - npm install eslint eslint-config-prettier eslint-plugin-jquery prettier eslint-plugin-prettier @shopify/theme-lint grunt --save-dev
+  - npm install
   - npm install python
   - curl -s https://shopify.github.io/themekit/scripts/install.py | sudo python
 script: 

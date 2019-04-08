@@ -1,5 +1,5 @@
 {
-  "name": "pruebaprettier",
+  "name": "travis-ci",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,9 +17,7 @@
     "eslint-plugin-jquery": "^1.5.0",
     "eslint-plugin-prettier": "^3.0.1",
     "grunt": "^1.0.4",
-    "grunt-contrib-jshint": "^2.1.0",
-    "grunt-contrib-nodeunit": "^2.0.0",
-    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-shell": "^3.0.1",
     "prettier": "^1.16.4"
   }
 }
