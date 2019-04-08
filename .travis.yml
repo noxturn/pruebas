@@ -11,5 +11,6 @@ script:
   - grunt theme-lint
   - grunt setShopsConfig
   - grunt setFilesToUpload
+  - git log --oneline --all --graph
 after_success:
   # - theme deploy -na
