@@ -115,7 +115,7 @@ module.exports = function(grunt) {
             },
             themeget: {
                 command: nametienda =>
-                    `cd shops/${nametienda}/theme && theme download --env=develop`,
+                    `cd shops/${nametienda}/theme && theme download --env=develop && git add . && git commit`,
             },
             carpetas: {
                 command: 'ls shops',
