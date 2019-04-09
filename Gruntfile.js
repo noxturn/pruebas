@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     //}
             //grunt.trask.run('shell:themeget:' + shop, 'shell:compareBranches')
             console.log(archivos)
-}
+//}
         callback()
     }
     // Fn para conseguir los nombres de las carpetas dentro de shops
