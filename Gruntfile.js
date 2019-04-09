@@ -22,9 +22,9 @@ module.exports = function(grunt) {
                 archivos = archivos.splice(i + 1, 1)
             }
         }
-        /*if (archivos.length != 0) {
+        if (archivos.length != 0) {
             for (i = 0; i < archivos.length; i++) {
-                archivos[i] = archivos[i].replace('shops/', '')*/
+                archivos[i] = archivos[i].replace('shops/', '')
         //shop = archivos[i].replace(/\/.*/,'')
         //}
         //grunt.trask.run('shell:themeget:' + shop, 'shell:compareBranches')
