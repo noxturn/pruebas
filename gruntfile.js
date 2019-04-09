@@ -76,6 +76,5 @@ module.exports = grunt => {
     })
     grunt.registerTask('deploy', function(a) {
         console.log(a);
-        
     })
 }
