@@ -75,8 +75,10 @@ module.exports = grunt => {
         grunt.task.run('deploy:' + shopify_theme_files)
     })
     grunt.registerTask('deploy', function(theme_files) {
+        console.log(theme_files);
+        
         // files.split(',').forEach(e=>{})
         //theme files -n --env=process.env.TRAVIS_BRANCH
-        grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + theme_files + ' -n --env=' + process.env.TRAVIS_BRANCH);
+        //grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + theme_files + ' -n --env=' + process.env.TRAVIS_BRANCH);
     })
 }

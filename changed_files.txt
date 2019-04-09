@@ -1,0 +1,2 @@
+gruntfile.js
+stores/massiveshops/templates/page.fab_pruebas.liquid
