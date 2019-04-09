@@ -9,7 +9,7 @@ module.exports = grunt => {
                 command: 'git diff HEAD^ HEAD --name-only > changed_files.txt'
             },
             theme_deploy: {
-                command: `${deploy_command}`
+                command: deploy_command => `${deploy_command}`
             }
         }
     })
@@ -27,7 +27,7 @@ module.exports = grunt => {
         for (let shop in shops) {
             
             for (let env in shops[shop]) {
-                configString += env
+                configString += env + ':';
 
                 for (let attr in shops[shop][env]) {
                     if (attr == 'ignore_files') {
