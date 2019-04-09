@@ -46,7 +46,7 @@ module.exports = function(grunt) {
             foldersNames.pop()
         }
         for (i = 0; i < foldersNames.length; i++) {
-            grunt.task.run('shell:prettier:' + foldersNames[i] + '/theme')
+            grunt.task.run('shell:themelint:' + foldersNames[i] + '/theme')
         }
         callback()
     }
@@ -112,9 +112,9 @@ module.exports = function(grunt) {
             deploy: {
                 command: fulldeploycommand => `${fulldeploycommand}`,
             },
-            prettier: {
+            themelint: {
                 command: tienda =>
-                    `./node_modules/.bin/prettier --check --write "shops/${tienda}/**"`,
+                    `./node_modules/.bin/theme-lint "shops/${tienda}"`,
             },
             themeget: {
                 command: nametienda =>
