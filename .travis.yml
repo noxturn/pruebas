@@ -9,7 +9,7 @@ script:
   - npm run prettier
   - npm run js-lint
   - grunt theme-lint
-  - grunt setShopsConfig
+  - grunt setStoreConfigFile
   - grunt setFilesToUpload
 after_success:
   - grunt deploy

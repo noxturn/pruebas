@@ -1,7 +1,20 @@
 massiveshops:
-  fabio:
-    password: "b78f47594e0e98cbe78f2b4a8aec6904"
-    theme_id: "46382776374"
+  production:
+    password: "pass"
+    theme_id: "prod_theme_id"
+    store: "https://massiveshops-dev.myshopify.com"
+    ignore_files:
+      - package-lock.json
+      - package.json
+      - .prettierignore
+      - .gitignore
+      - .travis.yml
+      - "*.jpg"
+      - "*.gif"
+      - changed_files.txt
+  development:
+    password: "pass"
+    theme_id: "develop_theme_id"
     store: "https://massiveshops-dev.myshopify.com"
     ignore_files:
       - package-lock.json

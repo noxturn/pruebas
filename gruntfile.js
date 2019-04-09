@@ -20,7 +20,7 @@ module.exports = grunt => {
             grunt.task.run('shell:theme_lint:' + shop);
         }
     })
-    grunt.registerTask('setShopsConfig', function() { //try to reduce loops
+    grunt.registerTask('setStoreConfigFile', function() { //try to reduce loops
         var shops = grunt.file.readYAML('config.yml');
         var configArray = [];
         var configString = '';
