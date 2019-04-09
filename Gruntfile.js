@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                 archivos[i] = archivos[i].replace('shops/', '')
                 shop = archivos[i].replace(/\/.*/, '')
             }
-
+            grunt.task.run('shell:dondeestoy')
             grunt.task.run('shell:themeget:' + shop, 'shell:compareBranches')
         }
 
