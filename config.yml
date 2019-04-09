@@ -1,57 +1,27 @@
 shop1:
-  development:
+  preproduction:
     password: shop1-Theme-pass
-    theme_id: "123"
+    theme_id: 46499561526
     store: can-i-buy-a-feeling.myshopify.com
     proxy: http://localhost:3000
     ignore_files:
-      - "*.gif"
+      - package-lock.json
+      - package.json
+      - .prettierignore
+      - .gitignore
+      - .travis.yml
       - "*.jpg"
-      - config/settings_data.json
-  test:
-    password: shop1-Theme-pass
-    theme_id: "123"
-    store: can-i-buy-a-feeling.myshopify.com
-    proxy: http://localhost:3000
-    ignore_files:
       - "*.gif"
-      - "*.jpg"
-      - config/settings_data.json
-shop2:
-  development:
-    password: shop2-Theme-pass
-    theme_id: "123"
-    store: can-i-buy-a-feeling.myshopify.com
-    proxy: http://localhost:3000
-    ignore_files:
-      - "*.gif"
-      - "*.jpg"
-      - config/settings_data.json
-shop3:
-  development:
-    password: shop3-Theme-pass
-    theme_id: "123"
-    store: can-i-buy-a-feeling.myshopify.com
-    proxy: http://localhost:3000
-    ignore_files:
-      - "*.gif"
-      - "*.jpg"
-      - config/settings_data.json
   production:
-    password: shop3-Theme-pass
-    theme_id: "123"
+    password: shop1-Theme-pass
+    theme_id: 46499528758
     store: can-i-buy-a-feeling.myshopify.com
     proxy: http://localhost:3000
     ignore_files:
-      - "*.gif"
+      - package-lock.json
+      - package.json
+      - .prettierignore
+      - .gitignore
+      - .travis.yml
       - "*.jpg"
-      - config/settings_data.json
-  test:
-    password: shop3-Theme-pass
-    theme_id: "123"
-    store: can-i-buy-a-feeling.myshopify.com
-    proxy: http://localhost:3000
-    ignore_files:
       - "*.gif"
-      - "*.jpg"
-      - config/settings_data.json
