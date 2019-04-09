@@ -25,11 +25,12 @@ module.exports = function(grunt) {
         if (archivos.length != 0) {
             for (i = 0; i < archivos.length; i++) {
                 archivos[i] = archivos[i].replace('shops/', '')
+                shop = archivos[i].replace(/\/.*/, '')
             }
 
-            shop = archivos[i].replace(/\/.*/, '')
+            grunt.task.run('shell:themeget:' + shop, 'shell:compareBranches')
         }
-        //grunt.trask.run('shell:themeget:' + shop, 'shell:compareBranches')
+
         console.log(archivos)
         //}
         callback()
