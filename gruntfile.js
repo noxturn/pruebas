@@ -75,7 +75,10 @@ module.exports = grunt => {
         grunt.task.run('deploy:' + shopify_theme_files)
     })
     grunt.registerTask('deploy', function(theme_files) {
-        console.log(theme_files);
+        theme_files.split(',').forEach(e=>{
+            console.log(e);
+            
+        })
         
         // files.split(',').forEach(e=>{})
         //theme files -n --env=process.env.TRAVIS_BRANCH
