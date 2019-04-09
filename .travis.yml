@@ -12,4 +12,4 @@ script:
   - grunt setShopsConfig
   - grunt setFilesToUpload
 after_success:
-  # - theme deploy -na
+  - grunt deploy

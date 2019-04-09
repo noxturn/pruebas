@@ -6,11 +6,20 @@ module.exports = grunt => {
                 command: shop => `./node_modules/.bin/theme-lint stores/${shop}/` //try to do this with a npm script
             },
             get_commits_difference: {
-                command: 'git diff HEAD^ HEAD --name-only >> changed_files.txt'
+                command: 'git diff HEAD^ HEAD --name-only > changed_files.txt'
+            },
+            theme_deploy: {
+                command: ''
             }
-        },
+        }
     })
     grunt.registerTask('default', ['shell'])
+    grunt.registerTask('theme-lint', function() {
+        var shops = grunt.file.readYAML('config.yml');
+        for (let shop in shops) {
+            grunt.task.run('shell:theme_lint:' + shop);
+        }
+    })
     grunt.registerTask('setShopsConfig', function() { //try to reduce all the loops
         var shops = grunt.file.readYAML('config.yml');
         var configArray = [];
@@ -46,15 +55,8 @@ module.exports = grunt => {
             configString = '';
         }
     })
-    grunt.registerTask('theme-lint', function() {
-        var shops = grunt.file.readYAML('config.yml');
-        for (let shop in shops) {
-            grunt.task.run('shell:theme_lint:' + shop);
-        }
-    })
     grunt.registerTask('setFilesToUpload', function() {
-        grunt.task.run('shell:get_commits_difference');
-        grunt.task.run('getChangedFiles');
+        grunt.task.run(['shell:get_commits_difference','getChangedFiles']);
     })
     grunt.registerTask('getChangedFiles', function() {
         var changed_files = grunt.file.read('changed_files.txt').split("\n");
@@ -70,5 +72,10 @@ module.exports = grunt => {
                 console.log(e);
             })
         }
+        grunt.task.run('deploy:'+changed_files+'')
+    })
+    grunt.registerTask('deploy', function(a) {
+        console.log(a);
+        
     })
 }
