@@ -1,8 +1,8 @@
 massiveshops:
   fabio:
-    password: b78f47594e0e98cbe78f2b4a8aec6904
-    theme_id: 46382776374
-    store: https://massiveshops-dev.myshopify.com
+    password: "b78f47594e0e98cbe78f2b4a8aec6904"
+    theme_id: "46382776374"
+    store: "https://massiveshops-dev.myshopify.com"
     ignore_files:
       - package-lock.json
       - package.json
