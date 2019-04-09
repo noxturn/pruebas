@@ -67,17 +67,10 @@ module.exports = grunt => {
                     changed_theme_files.push(e.substring(("stores/massiveshops/").length));
                 }
             })
-            // console.log("Changed files since last commit"); //just user info
-            // changed_theme_files.forEach(e=>{
-            //     console.log(e);
-            // })
         }
-        grunt.task.run('deploy:' + changed_theme_files)
+        grunt.task.run('deploy:' + changed_theme_files);
     })
     grunt.registerTask('deploy', function(files) {
-        // files.split(',').forEach( file => {
-        //     grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + file + ' -n --env=' + process.env.TRAVIS_BRANCH);
-        // })
-        grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + files.split(',').join(' ') + ' -n --env=' + process.env.TRAVIS_BRANCH);
+        grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && echo theme deploy ' + files.split(',').join(' ') + ' -n --env=' + process.env.TRAVIS_BRANCH);
     })
 }
