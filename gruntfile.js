@@ -68,9 +68,17 @@ module.exports = grunt => {
                 }
             })
         }
-        grunt.task.run('deploy:' + changed_theme_files);
+        grunt.task.run('deploy:' + changed_theme_files + ':' + shop);
     })
-    grunt.registerTask('deploy', function(files) {
-        grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && echo theme deploy ' + files.split(',').join(' ') + ' -n --env=' + process.env.TRAVIS_BRANCH);
+    grunt.registerTask('deploy', function(files,shop) {
+        var shops = grunt.file.readYAML('config.yml');
+        for (const shop in shops) {
+            console.log(shop);
+            
+        }
+        console.log(a);
+        
+        
+        //grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && echo theme deploy ' + files.split(',').join(' ') + ' -n --env=' + process.env.TRAVIS_BRANCH);
     })
 }
