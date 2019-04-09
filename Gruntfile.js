@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         )
 
         console.log('los archivos modificados son ' + archivos)
-        grunt.task.run('shell:status')
+        grunt.task.run('shell:dondeestoy')
         callback()
     }
     // Fn para conseguir los nombres de las carpetas dentro de shops
@@ -123,6 +123,9 @@ module.exports = function(grunt) {
             },
             status: {
                 command: 'git status',
+            },
+            dondeestoy: {
+                command: 'pwd',
             },
         },
     })
