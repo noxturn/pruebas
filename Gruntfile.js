@@ -7,7 +7,8 @@ module.exports = function(grunt) {
             return
         }
         var idCommit = stdout
-        grunt.task.run('shell:crearRama:temporal:' + idCommit)
+        grunt.task.run('shell:crearRama:temporal:' + idCommit, 'shell:status')
+
         callback()
     }
     // Fn para conseguir los nombres de las carpetas dentro de shops
@@ -98,12 +99,9 @@ module.exports = function(grunt) {
                 },
             },
             crearRama: {
-                command: [
-                    function(rama, commit) {
-                        return `git checkout -b ${rama} ${commit}`
-                    },
-                    'git status',
-                ].join('&&'),
+                command: function(rama, commit) {
+                    return `git checkout -b ${rama} ${commit}`
+                },
             },
             uglify: {
                 // uglify task configuration
@@ -115,6 +113,9 @@ module.exports = function(grunt) {
                 options: {
                     callback: comparar,
                 },
+            },
+            status: {
+                command: 'git status',
             },
         },
     })
