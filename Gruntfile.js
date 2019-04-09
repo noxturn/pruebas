@@ -126,8 +126,8 @@ module.exports = function(grunt) {
                 },
             },
             crearRama: {
-                command: function(rama, commit) {
-                    return `git checkout -b ${rama} ${commit}`
+                command: function(rama, numcommit) {
+                    return `git checkout -b ${rama} ${numcommit}`
                 },
             },
             compareBranches: {
