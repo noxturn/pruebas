@@ -11,9 +11,10 @@ module.exports = function(grunt) {
         grunt.task.run(
             'shell:crearRama:temporal:' + idCommit,
             'shell:status',
-            'shell:dondeestoy',
-            'shell:volverMaster',
-            'shell:crearRama:Shopify:'
+
+            //'shell:volverMaster',
+            'shell:crearRama:Shopify:',
+            'shell:dondeestoy'
         )
         archivos = archivos.split('\n')
         console.log('los archivos modificados son ' + archivos)
