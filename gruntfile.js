@@ -60,29 +60,30 @@ module.exports = grunt => {
     })
     grunt.registerTask('getChangedFiles', function() {
         var changed_files = grunt.file.read('changed_files.txt').split("\n");
-        var shopify_theme_files = [];
+        var changed_theme_files = [];
         if(changed_files.length > 0){
             changed_files.forEach(e=>{
                 if(e.startsWith("store")){
-                    shopify_theme_files.push(e);
+                    changed_theme_files.push(e.substring(("stores/massiveshops/").length));
                 }
             })
-            console.log("Changed files since last commit");
-            shopify_theme_files.forEach(e=>{
-                console.log(e);
-            })
+            // console.log("Changed files since last commit"); //just user info
+            // changed_theme_files.forEach(e=>{
+            //     console.log(e);
+            // })
         }
-        grunt.task.run('deploy:' + shopify_theme_files)
+        grunt.task.run('deploy:' + changed_theme_files)
     })
-    grunt.registerTask('deploy', function(theme_files) {
-        var files = theme_files.split(',').forEach(e=>{
-            e = e.substring(("stores/massiveshops/").length)
-            //grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + e + ' -n --env=' + process.env.TRAVIS_BRANCH);
-        })
-        console.log(files);
+    grunt.registerTask('deploy', function(files) {
+        // var files = [];
+        // theme_files.split(',').forEach(e=>{
+        //     e = e.substring(("stores/massiveshops/").length);
+        //     files 
+        //     //grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + e + ' -n --env=' + process.env.TRAVIS_BRANCH);
+        // })
         
         // files.split(',').forEach(e=>{})
         //theme files -n --env=process.env.TRAVIS_BRANCH
-        //grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + theme_files + ' -n --env=' + process.env.TRAVIS_BRANCH);
+        grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + files + ' -n --env=' + process.env.TRAVIS_BRANCH);
     })
 }
