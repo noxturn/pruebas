@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         grunt.task.run(
             'shell:crearRama:temporal:' + idCommit,
             'shell:status',
+            'shell:dondeestoy',
             'shell:volverMaster',
             'shell:crearRama:Shopify:'
         )
@@ -138,7 +139,7 @@ module.exports = function(grunt) {
                 command: 'git status',
             },
             dondeestoy: {
-                command: 'pwd',
+                command: 'ls',
             },
         },
     })
