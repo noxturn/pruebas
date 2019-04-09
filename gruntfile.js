@@ -58,7 +58,6 @@ module.exports = grunt => {
     })
     grunt.registerTask('getChangedFiles', function() {
         var changed_files = grunt.file.read('changed_files.txt').split("\n");
-
         if(changed_files.length > 0){
             changed_files.forEach(e=>{
                 console.log(e);
