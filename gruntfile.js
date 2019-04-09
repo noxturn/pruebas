@@ -3,7 +3,7 @@ module.exports = grunt => {
     grunt.initConfig({
         shell: {
             theme_lint: {
-                command: shop => `./node_modules/.bin/theme-lint shops/${shop}/` //try to do this with a npm script
+                command: shop => `./node_modules/.bin/theme-lint stores/${shop}/` //try to do this with a npm script
             },
             get_commits_difference: {
                 command: 'git diff HEAD^ HEAD --name-only >> changed_files.txt'
