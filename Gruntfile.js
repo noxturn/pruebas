@@ -114,11 +114,11 @@ module.exports = function(grunt) {
             },
             prettier: {
                 command: tienda =>
-                    `./node_modules/.bin/prettier --check --write shops/${tienda}/**`,
+                    `./node_modules/.bin/prettier --check --write shops/${tienda}/`,
             },
             themeget: {
                 command: nametienda =>
-                    `cd shops/${nametienda}/theme && theme download`,
+                    `cd shops/${nametienda}/theme && theme download --env=develop`,
             },
             carpetas: {
                 command: 'ls shops',
