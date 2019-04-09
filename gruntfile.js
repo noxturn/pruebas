@@ -76,7 +76,6 @@ module.exports = grunt => {
         for (const s in shops) {
             shop += s;
         }
-        
         grunt.task.run('shell:theme_deploy:' + 'cd stores/'+ shop +'/ && echo theme deploy ' + files.split(',').join(' ') + ' -n --env=' + process.env.TRAVIS_BRANCH);
     })
 }

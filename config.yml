@@ -1,8 +1,8 @@
 massiveshops:
   production:
-    password: "pass"
-    theme_id: "prod_theme_id"
-    store: "https://massiveshops-dev.myshopify.com"
+    password: "${massiveshops_pass}"
+    theme_id: "${prod_theme_id}"
+    store: "${massiveshops_pass}"
     ignore_files:
       - package-lock.json
       - package.json
@@ -13,9 +13,9 @@ massiveshops:
       - "*.gif"
       - changed_files.txt
   development:
-    password: "pass"
-    theme_id: "develop_theme_id"
-    store: "https://massiveshops-dev.myshopify.com"
+    password: "${massiveshops_pass}"
+    theme_id: "${develop_theme_id}"
+    store: "${massiveshops_pass}"
     ignore_files:
       - package-lock.json
       - package.json
