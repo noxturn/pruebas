@@ -58,10 +58,14 @@ module.exports = grunt => {
     })
     grunt.registerTask('getChangedFiles', function() {
         var changed_files = grunt.file.read('changed_files.txt').split("\n");
+        var shopify_theme_files = [];
         if(changed_files.length > 0){
             changed_files.forEach(e=>{
-                console.log(e);
+                if(e.startsWith("store")){
+                    shopify_theme_files.push(e);
+                }
             })
+            console.log(shopify_theme_files);
         }
     })
 }
