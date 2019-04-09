@@ -72,9 +72,10 @@ module.exports = grunt => {
                 console.log(e);
             })
         }
-        grunt.task.run('deploy:'+changed_files+'')
+        grunt.task.run('deploy:'+shopify_theme_files+'')
     })
-    grunt.registerTask('deploy', function(a) {
-        console.log(a);
+    grunt.registerTask('deploy', function(files) {
+        // files.split(',').forEach(e=>{})
+        console.log(process.env.TRAVIS_BRANCH);
     })
 }
