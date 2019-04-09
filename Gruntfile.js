@@ -11,11 +11,21 @@ module.exports = function(grunt) {
         grunt.task.run(
             'shell:crearRama:temporal:' + idCommit,
             'shell:status',
+            'shell:volverMaster',
             'shell:crearRama:Shopify:'
         )
 
         console.log('los archivos modificados son ' + archivos)
-        grunt.task.run('shell:dondeestoy')
+        if (archivos[archivos.length - 1] == '') {
+            archivos.pop()
+        }
+        for (i = 0; i < archivos.length; i++) {
+            cadena = archivos[i]
+            if (!cadena.startsWith('shops')) {
+                archivos = archivos.splice(i + 1, 1)
+            }
+        }
+        console.log(archivos)
         callback()
     }
     // Fn para conseguir los nombres de las carpetas dentro de shops
@@ -109,6 +119,9 @@ module.exports = function(grunt) {
                 command: function(rama, commit) {
                     return `git checkout -b ${rama} ${commit}`
                 },
+            },
+            volverMaster: {
+                command: 'git checkout master',
             },
             uglify: {
                 // uglify task configuration
