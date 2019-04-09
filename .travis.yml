@@ -9,6 +9,7 @@ before_script:
 script:
     - grunt theme-lint
     - npm run js-lint
+    - git diff HEAD^ HEAD --name-only >> archivos.txt
     - grunt shell:commit
 after_success:
     - grunt createYAMLFileOnEachShop

@@ -7,7 +7,14 @@ module.exports = function(grunt) {
             return
         }
         var idCommit = stdout
-        grunt.task.run('shell:crearRama:temporal:' + idCommit, 'shell:status')
+        grunt.task.run(
+            'shell:crearRama:temporal:' + idCommit,
+            'shell:status',
+            'shell:crearRama:Shopify'
+        )
+
+        archivos = grunt.file.read('archivo.txt')
+        console.log(archivos)
 
         callback()
     }
