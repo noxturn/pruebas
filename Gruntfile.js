@@ -17,17 +17,19 @@ module.exports = function(grunt) {
             'shell:dondeestoy'
         )
         archivos = archivos.split('\n')
-        console.log('los archivos modificados son ' + archivos)
         if (archivos[archivos.length - 1] == '') {
             archivos.pop()
         }
+
         for (i = 0; i < archivos.length; i++) {
             cadena = archivos[i]
             if (!cadena.startsWith('shops')) {
                 archivos = archivos.splice(i + 1, 1)
             }
         }
-        console.log(archivos)
+        if (archivos.length != 0) {
+            console.log(archivos)
+        }
         callback()
     }
     // Fn para conseguir los nombres de las carpetas dentro de shops
