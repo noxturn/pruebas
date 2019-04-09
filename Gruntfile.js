@@ -27,6 +27,12 @@ module.exports = function(grunt) {
         if (arreglodesubcadenas[arreglodesubcadenas.length - 1] == '') {
             arreglodesubcadenas.pop()
         }
+        for (i = 0; i < arreglodesubcadenas.length; i++) {
+            cadena = arreglodesubcadenas[i]
+            if (!cadena.startsWith('shops')) {
+                arreglodesubcadenas = arreglodesubcadenas.splice(i + 1, 1)
+            }
+        }
         var cadenaFicheros = ''
         for (i = 0; i < arreglodesubcadenas.length; i++) {
             arreglodesubcadenas[i] = arreglodesubcadenas[i].replace(
