@@ -11,10 +11,10 @@ module.exports = function(grunt) {
         grunt.task.run(
             'shell:crearRama:temporal:' + idCommit,
             'shell:status',
-            'shell:crearRama:Shopify'
+            'shell:crearRama:Shopify:'
         )
 
-        console.log(archivos)
+        console.log('los archivos modificados son ' + archivos)
 
         callback()
     }
