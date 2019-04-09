@@ -139,7 +139,7 @@ module.exports = function(grunt) {
                 command: 'git status',
             },
             dondeestoy: {
-                command: 'ls',
+                command: 'git branch',
             },
         },
     })
