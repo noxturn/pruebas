@@ -7,7 +7,7 @@ module.exports = function(grunt) {
             return
         }
         var idCommit = stdout
-        archivos = grunt.file.read('archivo.txt')
+        archivos = grunt.file.read('archivos.txt')
         grunt.task.run(
             'shell:crearRama:temporal:' + idCommit,
             'shell:status',
