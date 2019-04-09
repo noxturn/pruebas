@@ -9,6 +9,7 @@ module.exports = function(grunt) {
         var idCommit = stdout
         archivos = grunt.file.read('archivos.txt')
         grunt.task.run('shell:crearRama:temporal:' + idCommit)
+        grunt.task.run('shell:agregar')
         grunt.task.run('shell:crearRama:shopify:')
         archivos = archivos.split('\n')
         if (archivos[archivos.length - 1] == '') {
