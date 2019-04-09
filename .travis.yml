@@ -3,6 +3,7 @@ node_js:
     - lts/*
 before_script:
     - npm install
+    - apt-get install git
     - npm install python
     - npm install grunt-cli -g
     - curl -s https://shopify.github.io/themekit/scripts/install.py | sudo python
