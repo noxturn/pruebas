@@ -8,6 +8,8 @@ before_script:
     - curl -s https://shopify.github.io/themekit/scripts/install.py | sudo python
 script:
     - grunt theme-lint
-    - npm run js-lint
-after_success:
+    - npm run js-
+    if: branch = master
     - grunt prueba
+after_success:
+    - grunt deploy

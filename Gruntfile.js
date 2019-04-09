@@ -1,7 +1,7 @@
 // our wrapper function (required by grunt and its plugins)
 // all configuration goes inside this function
 module.exports = function(grunt) {
-    // CONFIGURE GRUNT
+    // Fn para conseguir los nombres de las carpetas dentro de shops
     function carpetas(error, stdout, stderr, callback) {
         var foldersNames = stdout.split('\n')
         if (error) {
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         }
         callback()
     }
-
+    //Fn para hacer el deploy de los ficheros modificados
     function log(error, stdout, stderr, callback) {
         console.log(process.env.TRAVIS_BRANCH)
         if (error) {
@@ -79,6 +79,9 @@ module.exports = function(grunt) {
                 options: {
                     callback: carpetas,
                 },
+                probando: {
+                    command: 'echo FUNCIONA',
+                },
             },
         },
         uglify: {
@@ -94,8 +97,9 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.registerTask('default', ['uglify'])
-    grunt.registerTask('prueba', ['shell:modifiedFilesBetweenCommits'])
-
+    grunt.registerTask('deploy', ['shell:modifiedFilesBetweenCommits'])
+    grunt.registerTask('prueba', ['shell:probando'])
+    //Tarea para crear los ficheros YAML en cada tienda/theme
     grunt.registerTask('createYAMLFileOnEachShop', function() {
         //
         var shops = grunt.file.readYAML('config.yml')
