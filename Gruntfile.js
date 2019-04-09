@@ -6,7 +6,7 @@ module.exports = function(grunt) {
             callback(error)
             return
         }
-        var idCommit = stdout
+        //        var idCommit = stdout
         archivos = grunt.file.read('archivos.txt')
         /*grunt.task.run('shell:crearRama:temporal:' + idCommit)
         grunt.task.run('shell:crearRama:shopify:')
@@ -24,11 +24,11 @@ module.exports = function(grunt) {
         /*if (archivos.length != 0) {
             for (i = 0; i < archivos.length; i++) {
                 archivos[i] = archivos[i].replace('shops/', '')*/
-                //shop = archivos[i].replace(/\/.*/,'')
-    //}
-            //grunt.trask.run('shell:themeget:' + shop, 'shell:compareBranches')
-            console.log(archivos)
-//}
+        //shop = archivos[i].replace(/\/.*/,'')
+        //}
+        //grunt.trask.run('shell:themeget:' + shop, 'shell:compareBranches')
+        console.log(archivos)
+        //}
         callback()
     }
     // Fn para conseguir los nombres de las carpetas dentro de shops
