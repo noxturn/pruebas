@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     }
     //Fn para hacer el deploy de los ficheros modificados
     function log(error, stdout, stderr, callback) {
-        console.log(process.env.TRAVIS_BRANCH)
+        //console.log(process.env.TRAVIS_BRANCH)
         if (error) {
             callback(error)
             return
@@ -40,6 +40,7 @@ module.exports = function(grunt) {
             cadenaFicheros = cadenaFicheros + fileNameRoute
         }
         if (cadenaFicheros !== '') {
+            //if(process.env.TRAVIS_BRANCH=='ricardo')enviroment=
             grunt.task.run(
                 'shell:deploy:' +
                     'cd shops/' +
@@ -48,7 +49,8 @@ module.exports = function(grunt) {
                     theme +
                     ' && echo theme deploy ' +
                     cadenaFicheros +
-                    ' -na'
+                    ' -n --env=' +
+                    process.env.TRAVIS_BRANCH
             )
         }
         callback()
