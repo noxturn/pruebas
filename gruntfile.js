@@ -77,6 +77,6 @@ module.exports = grunt => {
     grunt.registerTask('deploy', function(theme_files) {
         // files.split(',').forEach(e=>{})
         //theme files -n --env=process.env.TRAVIS_BRANCH
-        grunt.task.run('shell:theme_deploy:' + 'theme deploy ../../../' + files + ' -n --env=' + process.env.TRAVIS_BRANCH);
+        grunt.task.run('shell:theme_deploy:' + 'theme deploy ../../../' + theme_files + ' -n --env=' + process.env.TRAVIS_BRANCH);
     })
 }
