@@ -65,7 +65,10 @@ module.exports = grunt => {
                     shopify_theme_files.push(e);
                 }
             })
-            console.log(shopify_theme_files);
+            console.log("Changed files since last commit");
+            shopify_theme_files.forEach(e=>{
+                console.log(e);
+            })
         }
     })
 }
