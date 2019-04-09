@@ -8,7 +8,10 @@ before_script:
     - curl -s https://shopify.github.io/themekit/scripts/install.py | sudo python
 script:
     - grunt theme-lint
-    - npm run js-
+    - npm run js-lint
+    - if [ $TRAVIS_BRANCH == 'ricardo' ]; then
+      echo "Hola Ricardo";
+      fi
     - grunt prueba
 after_success:
     - grunt deploy

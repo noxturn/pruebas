@@ -79,9 +79,9 @@ module.exports = function(grunt) {
                 options: {
                     callback: carpetas,
                 },
-                probando: {
-                    command: 'echo FUNCIONA',
-                },
+            },
+            probando: {
+                command: 'echo FUNCIONA',
             },
         },
         uglify: {
