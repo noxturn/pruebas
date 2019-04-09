@@ -1,9 +1,8 @@
-shop1:
+massiveshops:
   preproduction:
-    password: shop1-Theme-pass
+    password: b78f47594e0e98cbe78f2b4a8aec6904
     theme_id: 46499561526
-    store: can-i-buy-a-feeling.myshopify.com
-    proxy: http://localhost:3000
+    store: https://massiveshops-dev.myshopify.com
     ignore_files:
       - package-lock.json
       - package.json
@@ -12,11 +11,11 @@ shop1:
       - .travis.yml
       - "*.jpg"
       - "*.gif"
+      - changed_files.txt
   production:
-    password: shop1-Theme-pass
+    password: b78f47594e0e98cbe78f2b4a8aec6904
     theme_id: 46499528758
-    store: can-i-buy-a-feeling.myshopify.com
-    proxy: http://localhost:3000
+    store: https://massiveshops-dev.myshopify.com
     ignore_files:
       - package-lock.json
       - package.json
@@ -25,3 +24,4 @@ shop1:
       - .travis.yml
       - "*.jpg"
       - "*.gif"
+      - changed_files.txt

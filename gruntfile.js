@@ -5,7 +5,7 @@ module.exports = grunt => {
             theme_lint: {
                 command: shop => `./node_modules/.bin/theme-lint shops/${shop}/` //try to do this with a npm script
             },
-            git_commits_difference: {
+            get_commits_difference: {
                 command: 'git diff HEAD^ HEAD --name-only >> changed_files.txt'
             }
         },
@@ -40,7 +40,7 @@ module.exports = grunt => {
             }
 
             configArray[shop] = configString;
-            grunt.file.write(`shops/${Object.keys(configArray)[0]}/config.yml`,configArray[shop]);
+            grunt.file.write(`stores/${Object.keys(configArray)[0]}/config.yml`,configArray[shop]);
 
             configArray = [];
             configString = '';
@@ -53,14 +53,16 @@ module.exports = grunt => {
         }
     })
     grunt.registerTask('setFilesToUpload', function() {
-        grunt.task.run('shell:git_commits_difference');
-        grunt.task.run('showChangedFiles');
+        grunt.task.run('shell:get_commits_difference');
+        grunt.task.run('getChangedFiles');
     })
-    grunt.registerTask('showChangedFiles', function() {
+    grunt.registerTask('getChangedFiles', function() {
         var changed_files = grunt.file.read('changed_files.txt').split("\n");
-        changed_files.forEach(e=>{
-            console.log(e);
-        })
-        
+
+        if(changed_files.length > 0){
+            changed_files.forEach(e=>{
+                console.log(e);
+            })
+        }
     })
 }
