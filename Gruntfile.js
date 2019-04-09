@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         archivos = grunt.file.read('archivos.txt')
         console.log(idCommit)
         grunt.task.run('shell:crearRama:temporal:' + idCommit)
-        /*grunt.task.run('shell:crearRama:shopify:')
+        grunt.task.run('shell:crearRama:shopify:')
         archivos = archivos.split('\n')
         if (archivos[archivos.length - 1] == '') {
             archivos.pop()
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
             if (!cadena.startsWith('shops')) {
                 archivos = archivos.splice(i + 1, 1)
             }
-        }*/
+        }
         /*if (archivos.length != 0) {
             for (i = 0; i < archivos.length; i++) {
                 archivos[i] = archivos[i].replace('shops/', '')*/
