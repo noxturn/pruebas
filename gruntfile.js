@@ -9,7 +9,7 @@ module.exports = grunt => {
                 command: 'git diff HEAD^ HEAD --name-only > changed_files.txt'
             },
             theme_deploy: {
-                command: ''
+                command: `${deploy_command}`
             }
         }
     })
@@ -20,7 +20,7 @@ module.exports = grunt => {
             grunt.task.run('shell:theme_lint:' + shop);
         }
     })
-    grunt.registerTask('setShopsConfig', function() { //try to reduce all the loops
+    grunt.registerTask('setShopsConfig', function() { //try to reduce loops
         var shops = grunt.file.readYAML('config.yml');
         var configArray = [];
         var configString = '';
@@ -72,10 +72,13 @@ module.exports = grunt => {
                 console.log(e);
             })
         }
-        grunt.task.run('deploy:'+shopify_theme_files+'')
+        grunt.task.run('deploy:' + shopify_theme_files)
     })
     grunt.registerTask('deploy', function(files) {
         // files.split(',').forEach(e=>{})
-        console.log(process.env.TRAVIS_BRANCH);
+        //theme files -n --env=process.env.TRAVIS_BRANCH
+        //grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + files + ' -n --env=' + process.env.TRAVIS_BRANCH);
+        console.log(files);
+        
     })
 }
