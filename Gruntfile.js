@@ -27,7 +27,9 @@ module.exports = function(grunt) {
                 shop = archivos[i].replace(/\/.*/, '')
             }
             grunt.task.run('shell:dondeestoy')
-            grunt.task.run('shell:themeget:' + shop, 'shell:compareBranches')
+            grunt.task.run('shell:themeget:' + shop)
+            grunt.task.run('shell:agregar')
+            grunt.task.run('shell:compareBranches')
         }
         //}
         callback()
@@ -115,7 +117,10 @@ module.exports = function(grunt) {
             },
             themeget: {
                 command: nametienda =>
-                    `cd shops/${nametienda}/theme && theme download --env=develop && git add . && git commit`,
+                    `cd shops/${nametienda}/theme && theme download --env=develop`,
+            },
+            agregar: {
+                command: ['git add .','git commit'].join('&&')
             },
             carpetas: {
                 command: 'ls shops',
