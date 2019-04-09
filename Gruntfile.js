@@ -14,7 +14,7 @@ module.exports = function(grunt) {
             'shell:volverMaster',
             'shell:crearRama:Shopify:'
         )
-
+        archivos = archivos.split('\n')
         console.log('los archivos modificados son ' + archivos)
         if (archivos[archivos.length - 1] == '') {
             archivos.pop()
