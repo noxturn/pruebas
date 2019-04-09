@@ -10,9 +10,7 @@ module.exports = function(grunt) {
         archivos = grunt.file.read('archivos.txt')
         grunt.task.run(
             'shell:crearRama:temporal:' + idCommit,
-            'shell:status',
-            'shell:crearRama:Shopify:',
-            'shell:dondeestoy'
+            'shell:crearRama:shopify:'
         )
         archivos = archivos.split('\n')
         if (archivos[archivos.length - 1] == '') {
@@ -117,7 +115,8 @@ module.exports = function(grunt) {
                     `./node_modules/.bin/theme-lint shops/${tienda}/`,
             },
             themeget: {
-                command: tienda => `cd shops/${tienda} && theme download`,
+                command: nametienda =>
+                    `cd shops/${nametienda} && theme download`,
             },
             carpetas: {
                 command: 'ls shops',
@@ -131,7 +130,7 @@ module.exports = function(grunt) {
                 },
             },
             compareBranches: {
-                command: 'git diff temporal Shopify',
+                command: 'git diff temporal shopify',
             },
             uglify: {
                 // uglify task configuration
