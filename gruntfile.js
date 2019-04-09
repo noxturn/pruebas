@@ -75,8 +75,9 @@ module.exports = grunt => {
         grunt.task.run('deploy:' + changed_theme_files)
     })
     grunt.registerTask('deploy', function(files) {
-        files.split(',').forEach( file => {
-            grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + file + ' -n --env=' + process.env.TRAVIS_BRANCH);
-        })
+        // files.split(',').forEach( file => {
+        //     grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + file + ' -n --env=' + process.env.TRAVIS_BRANCH);
+        // })
+        grunt.task.run('shell:theme_deploy:' + 'cd stores/massiveshops/ && theme deploy ' + files.split(',').join(' ') + ' -n --env=' + process.env.TRAVIS_BRANCH);
     })
 }
