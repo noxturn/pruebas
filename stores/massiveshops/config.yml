@@ -1,0 +1,24 @@
+preproduction
+  password: b78f47594e0e98cbe78f2b4a8aec6904
+  theme_id: 46499561526
+  store: https://massiveshops-dev.myshopify.com
+  ignore_files: 
+    - package-lock.json 
+    - package.json 
+    - .prettierignore 
+    - .gitignore 
+    - .travis.yml 
+    - "*.jpg" 
+    - "*.gif"
+production
+  password: b78f47594e0e98cbe78f2b4a8aec6904
+  theme_id: 46499528758
+  store: https://massiveshops-dev.myshopify.com
+  ignore_files: 
+    - package-lock.json 
+    - package.json 
+    - .prettierignore 
+    - .gitignore 
+    - .travis.yml 
+    - "*.jpg" 
+    - "*.gif"
