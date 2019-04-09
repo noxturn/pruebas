@@ -9,7 +9,7 @@ before_script:
 script:
     - grunt theme-lint
     - npm run js-
-    if: branch = master
+    if: branch = ricardo
     - grunt prueba
 after_success:
     - grunt deploy
