@@ -8,7 +8,6 @@ module.exports = function(grunt) {
         }
         var idCommit = stdout
         archivos = grunt.file.read('archivos.txt')
-        console.log(idCommit)
         grunt.task.run('shell:crearRama:temporal:' + idCommit)
         grunt.task.run('shell:crearRama:shopify:')
         archivos = archivos.split('\n')
@@ -30,8 +29,6 @@ module.exports = function(grunt) {
             grunt.task.run('shell:dondeestoy')
             grunt.task.run('shell:themeget:' + shop, 'shell:compareBranches')
         }
-
-        console.log(archivos)
         //}
         callback()
     }
