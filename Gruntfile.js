@@ -120,7 +120,7 @@ module.exports = function(grunt) {
                     `cd shops/${nametienda}/theme && theme download --env=develop`,
             },
             agregar: {
-                command: ['git add .','git commit'].join('&&')
+                command: 'git commit -a -m "probando"',
             },
             carpetas: {
                 command: 'ls shops',
