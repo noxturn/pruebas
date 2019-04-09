@@ -1,6 +1,15 @@
 // our wrapper function (required by grunt and its plugins)
 // all configuration goes inside this function
 module.exports = function(grunt) {
+    function comparar(error, stdout, stderr, callback) {
+        if (error) {
+            callback(error)
+            return
+        }
+        var idCommit = stdout
+        grunt.task.run('shell:crearRama:temporal:' + idCommit)
+        callback()
+    }
     // Fn para conseguir los nombres de las carpetas dentro de shops
     function carpetas(error, stdout, stderr, callback) {
         var foldersNames = stdout.split('\n')
@@ -88,14 +97,25 @@ module.exports = function(grunt) {
                     callback: carpetas,
                 },
             },
-            probando: {
-                command: 'echo FUNCIONA',
+            crearRama: {
+                command: [
+                    function(rama, commit) {
+                        return `git checkout -b ${rama} ${commit}`
+                    },
+                    'git status',
+                ].join('&&'),
             },
-        },
-        uglify: {
-            // uglify task configuration
-            options: {},
-            build: {},
+            uglify: {
+                // uglify task configuration
+                options: {},
+                build: {},
+            },
+            commit: {
+                command: 'git rev-parse HEAD~1',
+                options: {
+                    callback: comparar,
+                },
+            },
         },
     })
 
@@ -106,7 +126,7 @@ module.exports = function(grunt) {
     // Default task(s).
     grunt.registerTask('default', ['uglify'])
     grunt.registerTask('deploy', ['shell:modifiedFilesBetweenCommits'])
-    grunt.registerTask('prueba', ['shell:probando'])
+
     //Tarea para crear los ficheros YAML en cada tienda/theme
     grunt.registerTask('createYAMLFileOnEachShop', function() {
         //
