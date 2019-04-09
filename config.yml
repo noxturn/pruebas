@@ -9,10 +9,10 @@ shop1:
         store: '$tienda'
 shop2:
     develop:
-        password: 'passwordtienda2'
-        theme_id: 'themetienda2'
-        store: 'domaintienda2'
+        password: '$clave'
+        theme_id: '$shop2dev'
+        store: '$tienda'
     production:
-        password: '$passwordtienda2'
-        theme_id: '$passwordtienda2'
-        store: '$passwordtienda2'
+        password: '$clave'
+        theme_id: '$shop2preprod'
+        store: '$tienda'

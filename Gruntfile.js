@@ -11,8 +11,6 @@ module.exports = function(grunt) {
         grunt.task.run(
             'shell:crearRama:temporal:' + idCommit,
             'shell:status',
-
-            //'shell:volverMaster',
             'shell:crearRama:Shopify:',
             'shell:dondeestoy'
         )
@@ -28,7 +26,12 @@ module.exports = function(grunt) {
             }
         }
         if (archivos.length != 0) {
-            console.log(archivos)
+            for (i = 0; i < archivos.length; i++) {
+                archivos[i] = archivos[i].replace('shops/', '')
+                shop = archivos[i].replace(/\/.*/, '')
+            }
+            grunt.trask.run('shell:themeget:' + shop, 'shell:compareBranches')
+            //console.log(archivos)
         }
         callback()
     }
@@ -113,6 +116,9 @@ module.exports = function(grunt) {
                 command: tienda =>
                     `./node_modules/.bin/theme-lint shops/${tienda}/`,
             },
+            themeget: {
+                command: tienda => `cd shops/${tienda} && theme download`,
+            },
             carpetas: {
                 command: 'ls shops',
                 options: {
@@ -124,8 +130,8 @@ module.exports = function(grunt) {
                     return `git checkout -b ${rama} ${commit}`
                 },
             },
-            volverMaster: {
-                command: 'git checkout master',
+            compareBranches: {
+                command: 'git diff temporal Shopify',
             },
             uglify: {
                 // uglify task configuration
