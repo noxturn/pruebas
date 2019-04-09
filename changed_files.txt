@@ -1,4 +1,0 @@
-changed_files.txt
-gruntfile.js
-stores/massiveshops/templates/article.liquid
-stores/massiveshops/templates/cart.liquid
