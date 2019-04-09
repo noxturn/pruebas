@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         )
 
         console.log('los archivos modificados son ' + archivos)
-
+        grunt.task.run('shell:status')
         callback()
     }
     // Fn para conseguir los nombres de las carpetas dentro de shops
