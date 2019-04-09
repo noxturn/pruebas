@@ -132,7 +132,7 @@ module.exports = function(grunt) {
                 },
             },
             compareBranches: {
-                command: 'git diff temporal shopify',
+                command: 'git diff temporal..shopify',
             },
             uglify: {
                 // uglify task configuration
