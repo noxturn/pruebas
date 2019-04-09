@@ -136,7 +136,7 @@ module.exports = function(grunt) {
         for (const shop in shops) {
             result = ''
             for (const entorno in shops[shop]) {
-                console.log(shops[shop][entorno].password)
+                //console.log(shops[shop][entorno].password)
 
                 if (
                     grunt.file.exists(
