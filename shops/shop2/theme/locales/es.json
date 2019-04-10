@@ -108,7 +108,6 @@
     "cart": {
         "general": {
             "title": "Carrito de compra",
-            "note": "Agregue una nota a su pedido",
             "remove": "Quitar",
             "note": "Instrucciones especiales para el vendedor",
             "subtotal": "Subtotal",
