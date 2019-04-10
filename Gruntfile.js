@@ -136,7 +136,7 @@ module.exports = function(grunt) {
                 },
             },
             compareBranches: {
-                command: 'git diff --ignore-space-change --ignore-cr-at-eol --ignore-space-at-eol shopify..temporal',
+                command: 'git diff shopify..temporal',
             },
             uglify: {
                 // uglify task configuration
