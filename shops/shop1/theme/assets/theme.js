@@ -1262,7 +1262,6 @@ theme.Search = (function() {
         init: init,
     }
 })()
-
 ;(function() {
     var selectors = {
         backButton: '.return-link',

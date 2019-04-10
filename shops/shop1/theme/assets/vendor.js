@@ -125,12 +125,10 @@
         }),
         new s()
     )
-})
-/*!
- * jquery.min.js
- */,
-    /*! jQuery v2.2.3 | (c) jQuery Foundation | jquery.org/license */
-    !(function(e, t) {
+}) /*! jQuery v2.2.3 | (c) jQuery Foundation | jquery.org/license */,
+    /*!
+     * jquery.min.js
+     */ !(function(e, t) {
         'object' == typeof module && 'object' == typeof module.exports
             ? (module.exports = e.document
                   ? t(e, !0)
@@ -1532,14 +1530,12 @@
                                 a > 1 && h(c),
                                 a > 1 &&
                                     p(
-                                        e
-                                            .slice(0, a - 1)
-                                            .concat({
-                                                value:
-                                                    ' ' === e[a - 2].type
-                                                        ? '*'
-                                                        : '',
-                                            })
+                                        e.slice(0, a - 1).concat({
+                                            value:
+                                                ' ' === e[a - 2].type
+                                                    ? '*'
+                                                    : '',
+                                        })
                                     ).replace(ae, '$1'),
                                 n,
                                 i > a && y(e.slice(a, i)),
@@ -6161,16 +6157,14 @@
             t || (e.jQuery = e.$ = re),
             re
         )
-    })
-    /*!
-     * jquery.zoom.min.js
-     */,
-    /*!
+    }) /*!
   Zoom 1.7.15
   license: MIT
   http://www.jacklmoore.com/zoom
-*/
-    (function(e) {
+*/,
+    /*!
+     * jquery.zoom.min.js
+     */ (function(e) {
         var t = {
             url: !1,
             callback: !1,
@@ -7318,11 +7312,10 @@
                 : ve && ge
                 ? (me && ((ge.exports = u)._ = u), (ve._ = u))
                 : (xe._ = u)
-    }.call(this)
+    }.call(this),
     /*!
      * mobile-sniff.min.js
-     */,
-    !(function() {
+     */ !(function() {
         window.mobileCheck = function() {
             var e = !1
             return (
@@ -7338,13 +7331,11 @@
                 e
             )
         }
-    })()
-    /*!
-     * modernizr.min.js
-     */,
+    })(),
     /*! modernizr 3.3.1 (Custom Build) | MIT *
-     * https://modernizr.com/download/?-csstransforms-flexbox-svg-setclasses !*/
-    !(function(e, t, n) {
+     * https://modernizr.com/download/?-csstransforms-flexbox-svg-setclasses !*/ /*!
+     * modernizr.min.js
+     */ !(function(e, t, n) {
         function i(e, t) {
             return typeof e === t
         }
@@ -7602,12 +7593,13 @@
             delete b.addAsyncTest
         for (var j = 0; j < x._q.length; j++) x._q[j]()
         e.Modernizr = x
-    })(window, document)
+    })(
+        window,
+        document
+    ) /* Jonathan Snook - MIT License - https://github.com/snookca/prepareTransition */,
     /*!
      * prepare-transition.min.js
-     */,
-    /* Jonathan Snook - MIT License - https://github.com/snookca/prepareTransition */
-    !(function(e) {
+     */ !(function(e) {
         e.fn.prepareTransition = function() {
             return this.each(function() {
                 var t = e(this)
@@ -7630,11 +7622,10 @@
                     0 != i && (t.addClass('is-transitioning'), t[0].offsetWidth)
             })
         }
-    })(jQuery)
+    })(jQuery),
     /*!
      * slick-slim.min.js
-     */,
-    !(function(e) {
+     */ !(function(e) {
         'use strict'
         'function' == typeof define && define.amd
             ? define(['jquery'], e)
@@ -9297,10 +9288,7 @@
                         return n
                 return i
             })
-    })
-    /*!
-     * jquery.ba-throttle-debounce.min.js
-     */,
+    }),
     /*
      * jQuery throttle / debounce - v1.1 - 3/7/2010
      * http://benalman.com/projects/jquery-throttle-debounce-plugin/
@@ -9308,8 +9296,9 @@
      * Copyright (c) 2010 "Cowboy" Ben Alman
      * Dual licensed under the MIT and GPL licenses.
      * http://benalman.com/about/license/
-     */
-    (function(e, t) {
+     */ /*!
+     * jquery.ba-throttle-debounce.min.js
+     */ (function(e, t) {
         var n,
             i = e.jQuery || e.Cowboy || (e.Cowboy = {})
         ;(i.throttle = n = function(e, n, o, r) {
@@ -9349,7 +9338,6 @@
  * http://jqueryui.com
  * Includes: core.js, widget.js, mouse.js, position.js, accordion.js, autocomplete.js, button.js, datepicker.js, dialog.js, draggable.js, droppable.js, effect.js, effect-blind.js, effect-bounce.js, effect-clip.js, effect-drop.js, effect-explode.js, effect-fade.js, effect-fold.js, effect-highlight.js, effect-puff.js, effect-pulsate.js, effect-scale.js, effect-shake.js, effect-size.js, effect-slide.js, effect-transfer.js, menu.js, progressbar.js, resizable.js, selectable.js, selectmenu.js, slider.js, sortable.js, spinner.js, tabs.js, tooltip.js
  * Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
-
 ;(function(factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -21598,7 +21586,6 @@
     /******************************************************************************/
     /*********************************** EFFECTS **********************************/
     /******************************************************************************/
-
     ;(function() {
         $.extend($.effects, {
             version: '1.11.2',
@@ -21973,7 +21960,6 @@
     /******************************************************************************/
     /*********************************** EASING ***********************************/
     /******************************************************************************/
-
     ;(function() {
         // based on easing equations from Robert Penner (http://www.robertpenner.com/easing)
 

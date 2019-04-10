@@ -9,6 +9,7 @@ module.exports = function(grunt) {
         var idCommit = stdout
         archivos = grunt.file.read('archivos.txt')
         grunt.task.run('shell:crearRama:temporal:' + idCommit)
+        grunt.task.run('shell:agregar')
         grunt.task.run('shell:crearRama:shopify:')
         archivos = archivos.split('\n')
         if (archivos[archivos.length - 1] == '') {
@@ -26,8 +27,10 @@ module.exports = function(grunt) {
                 archivos[i] = archivos[i].replace('shops/', '')
                 shop = archivos[i].replace(/\/.*/, '')
             }
-            grunt.task.run('shell:dondeestoy')
-            grunt.task.run('shell:themeget:' + shop, 'shell:compareBranches')
+            grunt.task.run('shell:themeget:' + shop)
+            grunt.task.run('shell:prettier')
+            grunt.task.run('shell:agregar')
+            grunt.task.run('shell:compareBranches')
         }
         //}
         callback()
@@ -117,6 +120,9 @@ module.exports = function(grunt) {
                 command: nametienda =>
                     `cd shops/${nametienda}/theme && theme download --env=develop`,
             },
+            agregar: {
+                command: 'git commit -a -m "prueba"',
+            },
             carpetas: {
                 command: 'ls shops',
                 options: {
@@ -129,7 +135,7 @@ module.exports = function(grunt) {
                 },
             },
             compareBranches: {
-                command: 'git diff temporal..shopify',
+                command: 'git diff shopify..temporal',
             },
             uglify: {
                 // uglify task configuration
@@ -142,11 +148,8 @@ module.exports = function(grunt) {
                     callback: comparar,
                 },
             },
-            status: {
-                command: 'git status',
-            },
-            dondeestoy: {
-                command: 'git branch',
+            prettier: {
+                command: './node_modules/.bin/prettier --check --write "./**"'
             },
         },
     })
