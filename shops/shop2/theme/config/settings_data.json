@@ -99,10 +99,7 @@
                         }
                     }
                 },
-                "block_order": [
-                    "slideshow-0",
-                    "slideshow-1"
-                ],
+                "block_order": ["slideshow-0", "slideshow-1"],
                 "settings": {
                     "autoplay": true,
                     "autoplay_speed": "7000",
@@ -198,10 +195,7 @@
                         }
                     }
                 },
-                "block_order": [
-                    "1550672698367-0",
-                    "1550672698367-1"
-                ],
+                "block_order": ["1550672698367-0", "1550672698367-1"],
                 "settings": {
                     "slider-animation": "slide",
                     "slider-width": "full-width",
@@ -264,10 +258,7 @@
                             "settings": {}
                         }
                     },
-                    "block_order": [
-                        "slideshow-0",
-                        "slideshow-1"
-                    ],
+                    "block_order": ["slideshow-0", "slideshow-1"],
                     "settings": {}
                 },
                 "featured-collections": {
@@ -377,10 +368,7 @@
                             }
                         }
                     },
-                    "block_order": [
-                        "slideshow-0",
-                        "1492095993817"
-                    ],
+                    "block_order": ["slideshow-0", "1492095993817"],
                     "settings": {
                         "autoplay": true,
                         "autoplay_speed": "6000",
@@ -438,9 +426,7 @@
                             "settings": {}
                         }
                     },
-                    "block_order": [
-                        "1492033877875-0"
-                    ],
+                    "block_order": ["1492033877875-0"],
                     "settings": {}
                 },
                 "1492033924902": {
@@ -455,9 +441,7 @@
                             }
                         }
                     },
-                    "block_order": [
-                        "1492033924902-0"
-                    ],
+                    "block_order": ["1492033924902-0"],
                     "settings": {
                         "title": ""
                     }
