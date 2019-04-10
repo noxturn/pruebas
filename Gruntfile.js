@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         callback()
     }
     // Fn para conseguir los nombres de las carpetas dentro de shops
-    function carpetas(error, stdout, stderr, callback) {
+    function themelint(error, stdout, stderr, callback) {
         var foldersNames = stdout.split('\n')
         if (error) {
             callback(error)
@@ -103,6 +103,122 @@ module.exports = function(grunt) {
         // all of our configuration goes here
         cwd: process.cwd(),
 
+        //tienda nueva prompt
+        prompt: {
+            target: {
+              options: {
+                questions: [
+                  {
+                    config: 'shop.name', // arbitrary name or config for any other grunt task
+                    type: '<input type>', // list, checkbox, confirm, input, password
+                    message: 'Name for the shop:', // Question to ask the user, function needs to return a string,
+                    default: '', // default value if nothing is entered
+                    validate: function(value){
+                        var letters = /^[a-z0-9]+$/
+                        if (value.match(letters)){
+                            return true
+                        }else {return 'No es valido el nombre'}
+                    },
+                    // return true if valid, error message if invalid. works only with type:input 
+                    //filter:  function(value) // modify the answer
+                    //when: function(answers) // only ask this question when this function returns true
+                  },
+                  {
+                      config: 'pass.travis',
+                      type: 'input',
+                      message: 'Ingrese el nombre de la variable para password en Travis:',
+                      validate: function(value){
+                        var letters = /^[a-z0-9]+$/
+                        if (value.match(letters)){
+                            return true
+                        }else {return 'No es valido el nombre'}
+                    },
+                      
+                  },
+                  {
+                    config: 'store.travis',
+                    type: 'input',
+                    message: 'Ingrese el nombre de la variable para store en Travis:',
+                    validate: function(value){
+                      var letters = /^[a-z0-9]+$/
+                      if (value.match(letters)){
+                          return true
+                      }else {return 'No es valido el nombre'}
+                  },
+                    
+                },
+                {
+                    config: 'develop.travis',
+                    type: 'input',
+                    message: 'Ingrese el nombre de la variable para el theme de develop en Travis:',
+                    validate: function(value){
+                      var letters = /^[a-z0-9]+$/
+                      if (value.match(letters)){
+                          return true
+                      }else {return 'No es valido el nombre'}
+                  },
+                    
+                },
+                {
+                    config: 'production.travis',
+                    type: 'input',
+                    message: 'Ingrese el nombre de la variable para el theme de production en Travis:',
+                    validate: function(value){
+                      var letters = /^[a-z0-9]+$/
+                      if (value.match(letters)){
+                          return true
+                      }else {return 'No es valido el nombre'}
+                  },
+                    
+                },
+                  {
+                      config: 'theme.todo',
+                      type: 'list',
+                      message: 'Desea copiar el theme de otra tienda?',
+                      choices: [{value: 'si', name: 'Si'},{value: 'no', name: 'No'}]
+                  },
+                  {
+                    config: 'yes.copy',
+                    type: 'list',
+                    message: 'Marque la tienda de la que desea copiar el theme',
+                    choices: function(){
+                        var tiendas = []
+                        shops = grunt.file.readYAML('config.yml')
+                        for (shop in shops){
+                            tiendas.push(shop)
+                        }
+                        return tiendas
+                    },
+                    when: function(answers){
+                        return answers['theme.todo']=='si'
+                    }
+
+                  },
+                ],
+                then: function(results, done){
+                    this.async = true
+                    var yaml = grunt.file.read('config.yml')
+                    //console.log(results)
+                    grunt.file.write('config.yml',yaml + results['shop.name']+':\n    develop:\n        password: \'$'+results['pass.travis']+
+                    '\'\n        theme_id: \'$'+results['develop.travis']+'\'\n        store: \'$'+results['store.travis']+'\'\n    production:\n        password: \'$'+results['pass.travis']+
+                    '\'\n        theme_id: \'$'+results['production.travis']+'\'\n        store: \'$'+results['store.travis']+'\'\n')
+                    grunt.task.run('shell:copiar')
+                    //grunt.task.run('copy:files:'+results['yes.copy']+':'+results['shop.name'])
+                    return true
+                }
+              }
+            },
+          },
+
+        copy: {
+            files: {
+                cwd: 'shops/<%= grunt.task.current.args[0] %>',  // set working folder / root to copy
+                src: '**/*',           // copy all files and subfolders
+                dest: 'shops/<%= grunt.task.current.args[1] %>',    // destination folder
+                expand: true           // required when using cwd
+            }
+},
+
         shell: {
             modifiedFilesBetweenCommits: {
                 command: 'git diff HEAD^ HEAD --name-only',
@@ -117,6 +233,9 @@ module.exports = function(grunt) {
                 command: tienda =>
                     `./node_modules/.bin/theme-lint "shops/${tienda}"`,
             },
+            copiar: {
+                command: 'echo cp -r shops/shop1 shops/ricardo',
+            },
             themeget: {
                 command: nametienda =>
                     `cd shops/${nametienda}/theme && theme download --env=develop`,
@@ -127,7 +246,7 @@ module.exports = function(grunt) {
             carpetas: {
                 command: 'ls shops',
                 options: {
-                    callback: carpetas,
+                    callback: themelint,
                 },
             },
             crearRama: {
@@ -156,13 +275,18 @@ module.exports = function(grunt) {
     })
 
     // Load the plugin that provides the "uglify" task.
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify')
     grunt.loadNpmTasks('grunt-shell')
-
+    grunt.loadNpmTasks('grunt-prompt');
     // Default task(s).
     grunt.registerTask('default', ['uglify'])
     grunt.registerTask('deploy', ['shell:modifiedFilesBetweenCommits'])
-
+    grunt.registerTask('createShop', ['prompt:target'])   
+    //grunt.registerTask('copiar', ['copy:files:origen:dest'])
+        
+        
+    
     //Tarea para crear los ficheros YAML en cada tienda/theme
     grunt.registerTask('createYAMLFileOnEachShop', function() {
         //
