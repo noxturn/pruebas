@@ -27,8 +27,8 @@ module.exports = function(grunt) {
                 archivos[i] = archivos[i].replace('shops/', '')
                 shop = archivos[i].replace(/\/.*/, '')
             }
-            grunt.task.run('shell:dondeestoy')
             grunt.task.run('shell:themeget:' + shop)
+            grunt.task.run('shell:prettier')
             grunt.task.run('shell:agregar')
             grunt.task.run('shell:compareBranches')
         }
@@ -148,11 +148,8 @@ module.exports = function(grunt) {
                     callback: comparar,
                 },
             },
-            status: {
-                command: 'git status',
-            },
-            dondeestoy: {
-                command: 'git branch',
+            prettier: {
+                command: './node_modules/.bin/prettier --check --write "./**"'
             },
         },
     })
